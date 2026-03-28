@@ -82,6 +82,12 @@ router.get('/blog/:slug', (req, res) => {
   res.render('blog-post', { title: post.title + ' — Blog Halo', settings, post, related });
 });
 
+// ─── MAPA STRONY ─────────────────────────────────────────
+router.get('/mapa-strony', (req, res) => {
+  const settings = getSettings();
+  res.render('mapa-strony', { title: 'Mapa strony — Halo', settings });
+});
+
 // ─── USŁUGI (service pages) ──────────────────────────────
 router.get('/uslugi/:slug', (req, res, next) => {
   const db = getDb();
