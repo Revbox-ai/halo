@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'ustawienia' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Ustawienia strony</h1>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.success) { %><div class="alert alert-success"><%= flash.success %></div><% } %>
+
+      <form action="/admin/ustawienia" method="POST">
+        <div class="form-grid-2">
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Dane firmy</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Nazwa firmy</label>
+                  <input type="text" name="site_name" value="<%= settings.site_name || '' %>">
+                </div>
+                <div class="form-group">
+                  <label>Tagline / hasło</label>
+                  <input type="text" name="tagline" value="<%= settings.tagline || '' %>">
+                </div>
+                <div class="form-group">
+                  <label>Telefon</label>
+                  <input type="text" name="phone" value="<%= settings.phone || '' %>" placeholder="+48 500 000 000">
+                </div>
+                <div class="form-group">
+                  <label>E-mail</label>
+                  <input type="email" name="email" value="<%= settings.email || '' %>">
+                </div>
+                <div class="form-group">
+                  <label>Adres</label>
+                  <input type="text" name="address" value="<%= settings.address || '' %>" placeholder="Tarnobrzeg, woj. podkarpackie">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>SEO i analityka</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Google Analytics 4 ID</label>
+                  <input type="text" name="ga4_id" value="<%= settings.ga4_id || '' %>" placeholder="G-XXXXXXXXXX">
+                  <small style="color:#999;">Zostaw puste, jeśli nie używasz GA4.</small>
+                </div>
+                <div class="form-group">
+                  <label>OG Image (URL obrazka dla social media)</label>
+                  <input type="text" name="og_image" value="<%= settings.og_image || '' %>" placeholder="/images/header.png">
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Social media</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Facebook URL</label>
+                  <input type="url" name="facebook" value="<%= settings.facebook || '' %>" placeholder="https://facebook.com/...">
+                </div>
+                <div class="form-group">
+                  <label>Instagram URL</label>
+                  <input type="url" name="instagram" value="<%= settings.instagram || '' %>" placeholder="https://instagram.com/...">
+                </div>
+                <div class="form-group">
+                  <label>LinkedIn URL</label>
+                  <input type="url" name="linkedin" value="<%= settings.linkedin || '' %>" placeholder="https://linkedin.com/in/...">
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-red">Zapisz ustawienia</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

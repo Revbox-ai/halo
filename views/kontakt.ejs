@@ -1,0 +1,123 @@
+<%- include('partials/head', { title, settings }) %>
+<% const currentPage = 'kontakt'; %>
+<%- include('partials/nav') %>
+
+<!-- HERO -->
+<section style="background:var(--black); padding:140px 60px 80px; min-height:50vh; display:flex; align-items:center; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
+  <div class="section-inner" style="position:relative; z-index:1;">
+    <div class="hero-label">Kontakt</div>
+    <h1 style="font-family:var(--font-display); font-size:clamp(64px,7vw,100px); color:white; line-height:0.92; margin-bottom:20px;">
+      Porozmawiajmy<br>o Twoim <em style="color:var(--red); font-style:normal;">projekcie</em>
+    </h1>
+    <p style="font-size:16px; color:rgba(255,255,255,0.5); max-width:500px; line-height:1.7;">
+      Napisz lub zadzwoń. Odpowiadam w ciągu 24 godzin — zazwyczaj tego samego dnia.
+    </p>
+  </div>
+</section>
+
+<!-- SUCCESS MESSAGE -->
+<% if (success) { %>
+<div style="background:var(--red); padding:20px 60px; text-align:center;">
+  <p style="color:white; font-size:16px; font-weight:600;">✓ Dziękujemy! Odezwiemy się w ciągu 24 godzin.</p>
+</div>
+<% } %>
+
+<!-- MAIN CONTENT -->
+<section style="background:white; padding:80px 60px;">
+  <div class="section-inner" style="max-width:1100px; display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:start;">
+
+    <!-- Contact info -->
+    <div class="fade-in">
+      <h2 style="font-family:var(--font-display); font-size:36px; color:var(--black); margin-bottom:36px;">Dane kontaktowe</h2>
+
+      <div style="margin-bottom:40px;">
+        <a href="tel:<%= settings.phone %>" style="display:flex; align-items:flex-start; gap:20px; margin-bottom:28px; text-decoration:none; color:var(--text);" onmouseover="this.querySelector('.contact-icon').style.background='var(--red)'; this.querySelector('.contact-icon').style.color='white'" onmouseout="this.querySelector('.contact-icon').style.background='var(--gray-light)'; this.querySelector('.contact-icon').style.color='var(--text)'">
+          <div class="contact-icon" style="width:56px; height:56px; background:var(--gray-light); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; transition:background .2s, color .2s;"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:4px;">Telefon</div>
+            <div style="font-size:18px; font-weight:700; color:var(--black);"><%= settings.phone %></div>
+            <div style="font-size:13px; color:var(--gray); margin-top:2px;">Pon–Pt, 8:00–18:00</div>
+          </div>
+        </a>
+
+        <a href="mailto:<%= settings.email %>" style="display:flex; align-items:flex-start; gap:20px; margin-bottom:28px; text-decoration:none; color:var(--text);" onmouseover="this.querySelector('.contact-icon').style.background='var(--red)'; this.querySelector('.contact-icon').style.color='white'" onmouseout="this.querySelector('.contact-icon').style.background='var(--gray-light)'; this.querySelector('.contact-icon').style.color='var(--text)'">
+          <div class="contact-icon" style="width:56px; height:56px; background:var(--gray-light); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; transition:background .2s, color .2s;"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:4px;">E-mail</div>
+            <div style="font-size:18px; font-weight:700; color:var(--black);"><%= settings.email %></div>
+            <div style="font-size:13px; color:var(--gray); margin-top:2px;">Odpowiedź do 24h</div>
+          </div>
+        </a>
+
+        <div style="display:flex; align-items:flex-start; gap:20px;">
+          <div style="width:56px; height:56px; background:var(--gray-light); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:4px;">Lokalizacja</div>
+            <div style="font-size:18px; font-weight:700; color:var(--black);"><%= settings.address %></div>
+            <div style="font-size:13px; color:var(--gray); margin-top:2px;">Obsługujemy cały region podkarpacki</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="background:var(--gray-light); padding:20px 24px; border-left:3px solid var(--red);">
+        <p style="font-size:14px; color:#555; line-height:1.6;"><strong>Czas odpowiedzi: do 24h</strong><br>Zazwyczaj odpisuję tego samego dnia roboczego. W pilnych sprawach zadzwoń.</p>
+      </div>
+    </div>
+
+    <!-- Contact form -->
+    <div class="fade-in">
+      <h2 style="font-family:var(--font-display); font-size:36px; color:var(--black); margin-bottom:36px;">Napisz do mnie</h2>
+
+      <form action="/kontakt" method="POST">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Imię i nazwisko *</label>
+            <input type="text" name="name" required style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+          </div>
+          <div>
+            <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Telefon</label>
+            <input type="tel" name="phone" style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">E-mail *</label>
+          <input type="email" name="email" required style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Rodzaj usługi</label>
+          <select name="service" style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; background:white; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+            <option value="">Wybierz usługę...</option>
+            <option value="strony">Strona internetowa</option>
+            <option value="seo">SEO / Pozycjonowanie</option>
+            <option value="ads">Google Ads</option>
+            <option value="grafika">Grafika reklamowa</option>
+            <option value="automatyzacja">Automatyzacja sprzedaży</option>
+            <option value="inne">Inne / Nie wiem</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Wiadomość</label>
+          <textarea name="message" rows="5" placeholder="Opisz krótko swoją firmę i czego potrzebujesz..." style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s; resize:vertical;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-family:var(--font-body);">
+          Wyślij wiadomość →
+        </button>
+        <p style="font-size:12px; color:var(--gray); margin-top:12px; text-align:center;">
+          Wysyłając formularz, zgadzasz się na przetwarzanie danych w celu obsługi Twojego zapytania.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script src="/js/extra.js"></script>
+</body>
+</html>

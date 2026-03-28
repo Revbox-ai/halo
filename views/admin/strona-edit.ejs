@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'strony' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Edytuj stronę: <%= page.title %></h1>
+      <div>
+        <a href="/uslugi/<%= page.slug %>" target="_blank" class="btn btn-sm">Podgląd →</a>
+        <a href="/admin/strony" class="btn btn-sm">← Lista</a>
+      </div>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <form action="/admin/strony/<%= page.id %>/edit" method="POST">
+        <div class="form-grid-2">
+          <div class="card">
+            <div class="card-header"><h2>SEO i nagłówki</h2></div>
+            <div style="padding:24px;">
+              <div class="form-group">
+                <label>Tytuł strony (meta title)</label>
+                <input type="text" name="title" value="<%= page.title %>" required>
+              </div>
+              <div class="form-group">
+                <label>Meta description</label>
+                <textarea name="meta_description" rows="3"><%= page.meta_description || '' %></textarea>
+              </div>
+              <div class="form-group">
+                <label>Nagłówek H1</label>
+                <input type="text" name="h1" value="<%= page.h1 || '' %>">
+              </div>
+              <div class="form-group">
+                <label>Hero subtitle (lead pod H1)</label>
+                <textarea name="hero_subtitle" rows="3"><%= page.hero_subtitle || '' %></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h2>Treść (JSON)</h2>
+              <a href="#" onclick="formatJson(); return false;" class="btn btn-sm">Formatuj JSON</a>
+            </div>
+            <div style="padding:24px;">
+              <p style="font-size:13px; color:#666; margin-bottom:12px;">
+                Edytuj wszystkie sekcje strony w formacie JSON. Dostępne klucze:
+                <code>dla_kogo</code>, <code>co_obejmuje</code> (tablica),
+                <code>korzysci</code> (tablica), <code>cennik</code> (tablica obiektów),
+                <code>faq</code> (tablica obiektów), <code>powiazane_uslugi</code> (tablica slugów).
+              </p>
+              <div class="form-group">
+                <textarea name="content_json" id="content_json" rows="30" style="font-family:monospace; font-size:13px;"><%= JSON.stringify(content, null, 2) %></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px; display:flex; gap:12px;">
+          <button type="submit" class="btn btn-red">Zapisz zmiany</button>
+          <a href="/admin/strony" class="btn">Anuluj</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function formatJson() {
+      const ta = document.getElementById('content_json');
+      try {
+        const obj = JSON.parse(ta.value);
+        ta.value = JSON.stringify(obj, null, 2);
+      } catch(e) {
+        alert('Nieprawidłowy JSON: ' + e.message);
+      }
+    }
+  </script>
+</body>
+</html>

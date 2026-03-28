@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'blog' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title"><%= post ? 'Edytuj wpis' : 'Nowy wpis' %></h1>
+      <a href="/admin/blog" class="btn btn-sm">← Lista wpisów</a>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <form action="<%= post ? '/admin/blog/' + post.id + '/edit' : '/admin/blog/new' %>" method="POST">
+        <div class="form-grid-2">
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Treść wpisu</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Tytuł *</label>
+                  <input type="text" name="title" value="<%= post ? post.title : '' %>" required id="post-title" oninput="autoSlug()">
+                </div>
+                <div class="form-group">
+                  <label>Lead / zajawka</label>
+                  <textarea name="excerpt" rows="3"><%= post ? (post.excerpt || '') : '' %></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Treść (HTML)</label>
+                  <textarea name="content" rows="20" style="font-family:monospace; font-size:13px;"><%= post ? (post.content || '') : '' %></textarea>
+                  <small style="color:#999;">Możesz używać tagów HTML: &lt;h2&gt;, &lt;h3&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;, itd.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Ustawienia</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Slug URL</label>
+                  <input type="text" name="slug" id="post-slug" value="<%= post ? post.slug : '' %>" placeholder="auto-generowany-z-tytulu">
+                  <small style="color:#999;">Adres: /blog/<strong id="slug-preview"><%= post ? post.slug : 'auto-slug' %></strong></small>
+                </div>
+                <div class="form-group">
+                  <label>Meta description (SEO)</label>
+                  <textarea name="meta_description" rows="3"><%= post ? (post.meta_description || '') : '' %></textarea>
+                </div>
+                <div class="form-check">
+                  <label>
+                    <input type="checkbox" name="published" value="1" <%= post && post.published ? 'checked' : '' %>>
+                    Opublikowany (widoczny na stronie)
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+              <button type="submit" class="btn btn-red">
+                <%= post ? 'Zapisz zmiany' : 'Dodaj wpis' %>
+              </button>
+              <a href="/admin/blog" class="btn">Anuluj</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+    function slugify(str) {
+      return str.toLowerCase()
+        .replace(/ą/g,'a').replace(/ć/g,'c').replace(/ę/g,'e')
+        .replace(/ł/g,'l').replace(/ń/g,'n').replace(/ó/g,'o')
+        .replace(/ś/g,'s').replace(/ź/g,'z').replace(/ż/g,'z')
+        .replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').trim();
+    }
+    function autoSlug() {
+      const title = document.getElementById('post-title').value;
+      const slugInput = document.getElementById('post-slug');
+      const preview = document.getElementById('slug-preview');
+      if (!slugInput.dataset.manual) {
+        const s = slugify(title);
+        slugInput.value = s;
+        preview.textContent = s || 'auto-slug';
+      }
+    }
+    document.getElementById('post-slug').addEventListener('input', function() {
+      this.dataset.manual = '1';
+      document.getElementById('slug-preview').textContent = this.value || 'slug';
+    });
+  </script>
+</body>
+</html>

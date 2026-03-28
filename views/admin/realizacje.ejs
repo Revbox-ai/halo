@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'realizacje' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Realizacje (<%= realizacje.length %>)</h1>
+      <a href="/admin/realizacje/new" class="btn btn-red">+ Nowa realizacja</a>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.success) { %><div class="alert alert-success"><%= flash.success %></div><% } %>
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <div class="card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Tytuł</th>
+              <th>Branża</th>
+              <th>Miasto</th>
+              <th>Status</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (realizacje.length === 0) { %>
+              <tr><td colspan="5" style="text-align:center; color:#999; padding:40px;">Brak realizacji. <a href="/admin/realizacje/new">Dodaj pierwszą →</a></td></tr>
+            <% } %>
+            <% for (const r of realizacje) { %>
+              <tr>
+                <td><strong><%= r.title %></strong></td>
+                <td style="color:#666;"><%= r.branza || '—' %></td>
+                <td style="color:#666;"><%= r.miasto || '—' %></td>
+                <td><span class="badge <%= r.published ? 'badge-green' : 'badge-gray' %>"><%= r.published ? 'Widoczna' : 'Ukryta' %></span></td>
+                <td style="white-space:nowrap;">
+                  <a href="/admin/realizacje/<%= r.id %>/edit" class="btn btn-sm btn-red">Edytuj</a>
+                  <a href="/realizacje/<%= r.slug %>" target="_blank" class="btn btn-sm">Zobacz</a>
+                  <form action="/admin/realizacje/<%= r.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Usunąć realizację?')">
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                  </form>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<nav id="main-nav">
+  <a href="/" class="logo">
+    <img src="/images/halo_logo_white.png" alt="Halo" class="logo-img">
+  </a>
+
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/" class="<%= typeof currentPage !== 'undefined' && currentPage === 'home' ? 'active' : '' %>">Start</a></li>
+    <li class="nav-dropdown">
+      <a href="#" class="nav-dropdown-toggle">Usługi <span class="nav-arrow">▾</span></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="/uslugi/strony-internetowe-tarnobrzeg">Strony internetowe</a></li>
+        <li><a href="/uslugi/seo-tarnobrzeg">SEO — pozycjonowanie</a></li>
+        <li><a href="/uslugi/marketing-internetowy-tarnobrzeg">Marketing internetowy</a></li>
+        <li><a href="/uslugi/social-media-tarnobrzeg">Social media</a></li>
+        <li><a href="/uslugi/content-marketing-tarnobrzeg">Content marketing</a></li>
+        <li><a href="/uslugi/grafika-reklamowa-tarnobrzeg">Branding i kreacja</a></li>
+        <li><a href="/uslugi/automatyzacje-firmy-tarnobrzeg">Automatyzacje i narzędzia</a></li>
+        <li><a href="/uslugi/analityka-doradztwo-tarnobrzeg">Analityka i doradztwo</a></li>
+      </ul>
+    </li>
+    <li><a href="/o-mnie" class="<%= typeof currentPage !== 'undefined' && currentPage === 'o-mnie' ? 'active' : '' %>">O mnie</a></li>
+    <li><a href="/realizacje" class="<%= typeof currentPage !== 'undefined' && currentPage === 'realizacje' ? 'active' : '' %>">Realizacje</a></li>
+    <li><a href="/blog" class="<%= typeof currentPage !== 'undefined' && currentPage === 'blog' ? 'active' : '' %>">Blog</a></li>
+    <li><a href="/kontakt" class="<%= typeof currentPage !== 'undefined' && currentPage === 'kontakt' ? 'active' : '' %>">Kontakt</a></li>
+  </ul>
+
+  <a href="/kontakt" class="nav-cta">Bezpłatna konsultacja</a>
+
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>

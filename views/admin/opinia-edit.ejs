@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'opinie' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title"><%= opinia ? 'Edytuj opinię' : 'Nowa opinia' %></h1>
+      <a href="/admin/opinie" class="btn btn-sm">← Lista</a>
+    </div>
+    <div class="admin-content">
+      <div class="card" style="max-width:600px;">
+        <div style="padding:32px;">
+          <form action="<%= opinia ? '/admin/opinie/' + opinia.id + '/edit' : '/admin/opinie/new' %>" method="POST">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label>Imię i nazwisko *</label>
+                <input type="text" name="imie" value="<%= opinia ? opinia.imie : '' %>" required placeholder="Anna Kowalska">
+              </div>
+              <div class="form-group">
+                <label>Inicjały (avatar)</label>
+                <input type="text" name="inicjaly" value="<%= opinia ? (opinia.inicjaly || '') : '' %>" placeholder="AK" maxlength="3">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Firma</label>
+              <input type="text" name="firma" value="<%= opinia ? (opinia.firma || '') : '' %>" placeholder="Firma Kowalski, Tarnobrzeg">
+            </div>
+            <div class="form-group">
+              <label>Treść opinii *</label>
+              <textarea name="tresc" rows="6" required placeholder="Treść opinii klienta..."><%= opinia ? opinia.tresc : '' %></textarea>
+            </div>
+            <div class="form-check" style="margin-bottom:24px;">
+              <label>
+                <input type="checkbox" name="published" value="1" <%= !opinia || opinia.published ? 'checked' : '' %>>
+                Widoczna na stronie
+              </label>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button type="submit" class="btn btn-red"><%= opinia ? 'Zapisz' : 'Dodaj opinię' %></button>
+              <a href="/admin/opinie" class="btn">Anuluj</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

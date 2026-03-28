@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'opinie' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Opinie (<%= opinie.length %>)</h1>
+      <a href="/admin/opinie/new" class="btn btn-red">+ Nowa opinia</a>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.success) { %><div class="alert alert-success"><%= flash.success %></div><% } %>
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <div class="card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Autor</th>
+              <th>Firma</th>
+              <th>Treść</th>
+              <th>Status</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (opinie.length === 0) { %>
+              <tr><td colspan="5" style="text-align:center; color:#999; padding:40px;">Brak opinii. <a href="/admin/opinie/new">Dodaj pierwszą →</a></td></tr>
+            <% } %>
+            <% for (const o of opinie) { %>
+              <tr>
+                <td>
+                  <strong><%= o.imie %></strong>
+                  <% if (o.inicjaly) { %>
+                    <br><small style="color:#999;">Inicjały: <%= o.inicjaly %></small>
+                  <% } %>
+                </td>
+                <td style="color:#666;"><%= o.firma || '—' %></td>
+                <td style="max-width:300px; color:#555; font-size:13px;"><%= o.tresc.substring(0,100) %><% if (o.tresc.length > 100) { %>...<% } %></td>
+                <td>
+                  <form action="/admin/opinie/<%= o.id %>/toggle" method="POST" style="display:inline;">
+                    <button type="submit" class="badge <%= o.published ? 'badge-green' : 'badge-gray' %>" style="cursor:pointer; border:none; font-size:12px;">
+                      <%= o.published ? 'Widoczna' : 'Ukryta' %>
+                    </button>
+                  </form>
+                </td>
+                <td style="white-space:nowrap;">
+                  <a href="/admin/opinie/<%= o.id %>/edit" class="btn btn-sm btn-red">Edytuj</a>
+                  <form action="/admin/opinie/<%= o.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Usunąć opinię?')">
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                  </form>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

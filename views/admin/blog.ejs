@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'blog' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Blog (<%= posts.length %> wpisów)</h1>
+      <a href="/admin/blog/new" class="btn btn-red">+ Nowy wpis</a>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.success) { %><div class="alert alert-success"><%= flash.success %></div><% } %>
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <div class="card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Tytuł</th>
+              <th>Status</th>
+              <th>Data dodania</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (posts.length === 0) { %>
+              <tr><td colspan="4" style="text-align:center; color:#999; padding:40px;">Brak wpisów. <a href="/admin/blog/new">Dodaj pierwszy wpis →</a></td></tr>
+            <% } %>
+            <% for (const post of posts) { %>
+              <tr>
+                <td>
+                  <strong><%= post.title %></strong>
+                  <br>
+                  <small style="color:#999; font-family:monospace;">/blog/<%= post.slug %></small>
+                </td>
+                <td><span class="badge <%= post.published ? 'badge-green' : 'badge-gray' %>"><%= post.published ? 'Opublikowany' : 'Szkic' %></span></td>
+                <td style="color:#666; font-size:13px;"><%= new Date(post.created_at).toLocaleDateString('pl-PL') %></td>
+                <td style="white-space:nowrap;">
+                  <a href="/admin/blog/<%= post.id %>/edit" class="btn btn-sm btn-red">Edytuj</a>
+                  <a href="/blog/<%= post.slug %>" target="_blank" class="btn btn-sm">Zobacz</a>
+                  <form action="/admin/blog/<%= post.id %>/delete" method="POST" style="display:inline;" onsubmit="return confirm('Usunąć wpis?')">
+                    <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                  </form>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

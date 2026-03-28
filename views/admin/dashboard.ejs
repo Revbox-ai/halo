@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'dashboard' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Dashboard</h1>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.success) { %><div class="alert alert-success"><%= flash.success %></div><% } %>
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <!-- Stats cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num"><%= counts.posts %></div>
+          <div class="stat-label">Wpisy na blogu</div>
+          <div class="stat-sub"><%= counts.publishedPosts %> opublikowanych</div>
+          <a href="/admin/blog" class="stat-link">Zarządzaj →</a>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><%= counts.realizacje %></div>
+          <div class="stat-label">Realizacje</div>
+          <div class="stat-sub">W bazie</div>
+          <a href="/admin/realizacje" class="stat-link">Zarządzaj →</a>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><%= counts.opinie %></div>
+          <div class="stat-label">Opinie</div>
+          <div class="stat-sub">W bazie</div>
+          <a href="/admin/opinie" class="stat-link">Zarządzaj →</a>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num"><%= counts.pages %></div>
+          <div class="stat-label">Strony usług</div>
+          <div class="stat-sub">Edytowalne</div>
+          <a href="/admin/strony" class="stat-link">Zarządzaj →</a>
+        </div>
+      </div>
+
+      <!-- Recent posts -->
+      <div class="card" style="margin-top:32px;">
+        <div class="card-header">
+          <h2>Ostatnie wpisy na blogu</h2>
+          <a href="/admin/blog/new" class="btn btn-red btn-sm">+ Nowy wpis</a>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Tytuł</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (recentPosts.length === 0) { %>
+              <tr><td colspan="4" style="text-align:center; color:#999;">Brak wpisów</td></tr>
+            <% } %>
+            <% for (const post of recentPosts) { %>
+              <tr>
+                <td><strong><%= post.title %></strong></td>
+                <td><span class="badge <%= post.published ? 'badge-green' : 'badge-gray' %>"><%= post.published ? 'Opublikowany' : 'Szkic' %></span></td>
+                <td style="color:#666; font-size:13px;"><%= new Date(post.created_at).toLocaleDateString('pl-PL') %></td>
+                <td>
+                  <a href="/admin/blog/<%= post.id %>/edit" class="btn btn-sm">Edytuj</a>
+                  <a href="/blog/<%= post.slug %>" target="_blank" class="btn btn-sm">Zobacz</a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick links -->
+      <div class="card" style="margin-top:24px;">
+        <div class="card-header"><h2>Szybkie akcje</h2></div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; padding:24px;">
+          <a href="/admin/blog/new" class="btn btn-red">+ Nowy wpis</a>
+          <a href="/admin/realizacje/new" class="btn btn-red">+ Nowa realizacja</a>
+          <a href="/admin/opinie/new" class="btn btn-red">+ Nowa opinia</a>
+          <a href="/admin/ustawienia" class="btn">Ustawienia strony</a>
+          <a href="/" target="_blank" class="btn">Podgląd strony →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

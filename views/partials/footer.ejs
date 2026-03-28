@@ -1,0 +1,73 @@
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="/images/halo_logo_white.png" alt="Halo" class="logo-img">
+      </div>
+      <p class="footer-desc">Agencja marketingu cyfrowego. Obsługujemy firmy z Tarnobrzega, Sandomierza, Stalowej Woli, Nowej Dęby, Mielca, Rzeszowa i okolic.</p>
+      <div class="footer-social" style="margin-top:20px; display:flex; gap:12px;">
+        <% if (settings.facebook) { %>
+          <a href="<%= settings.facebook %>" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        <% } %>
+        <% if (settings.instagram) { %>
+          <a href="<%= settings.instagram %>" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        <% } %>
+        <% if (settings.linkedin) { %>
+          <a href="<%= settings.linkedin %>" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Usługi</h4>
+      <ul>
+        <li><a href="/uslugi/strony-internetowe-tarnobrzeg">Strony internetowe</a></li>
+        <li><a href="/uslugi/seo-tarnobrzeg">SEO / Pozycjonowanie</a></li>
+        <li><a href="/uslugi/google-ads-tarnobrzeg">Google Ads</a></li>
+        <li><a href="/uslugi/grafika-reklamowa-tarnobrzeg">Grafika reklamowa</a></li>
+        <li><a href="/uslugi/automatyzacje-firmy-tarnobrzeg">Automatyzacja</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Firma</h4>
+      <ul>
+        <li><a href="/">Strona główna</a></li>
+        <li><a href="/o-mnie">O mnie</a></li>
+        <li><a href="/realizacje">Realizacje</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <ul>
+        <li style="color:rgba(255,255,255,0.5); font-size:14px; margin-bottom:8px;">
+          <a href="tel:<%= settings.phone %>" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#E63329'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+            <i class="fa-solid fa-phone" style="margin-right:6px;"></i><%= settings.phone %>
+          </a>
+        </li>
+        <li style="color:rgba(255,255,255,0.5); font-size:14px; margin-bottom:8px;">
+          <a href="mailto:<%= settings.email %>" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#E63329'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+            <i class="fa-solid fa-envelope" style="margin-right:6px;"></i><%= settings.email %>
+          </a>
+        </li>
+        <li style="color:rgba(255,255,255,0.5); font-size:14px;">
+          <i class="fa-solid fa-location-dot" style="margin-right:6px;"></i><%= settings.address %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© <%= new Date().getFullYear() %> Halo. Wszelkie prawa zastrzeżone.</span>
+    <span class="footer-cities">Tarnobrzeg · Sandomierz · Stalowa Wola · Nowa Dęba · Mielec · Rzeszów</span>
+  </div>
+</footer>

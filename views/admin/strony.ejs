@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'strony' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title">Strony usług</h1>
+    </div>
+    <div class="admin-content">
+      <% if (flash && flash.success) { %><div class="alert alert-success"><%= flash.success %></div><% } %>
+      <% if (flash && flash.error) { %><div class="alert alert-error"><%= flash.error %></div><% } %>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Strony usług (<%= pages.length %>)</h2>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Tytuł</th>
+              <th>Slug / URL</th>
+              <th>Ostatnia aktualizacja</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (const page of pages) { %>
+              <tr>
+                <td><strong><%= page.title %></strong></td>
+                <td>
+                  <code style="font-size:12px; background:#f5f5f5; padding:2px 6px;">/uslugi/<%= page.slug %></code>
+                </td>
+                <td style="color:#666; font-size:13px;"><%= new Date(page.updated_at).toLocaleDateString('pl-PL') %></td>
+                <td style="white-space:nowrap;">
+                  <a href="/admin/strony/<%= page.id %>/edit" class="btn btn-sm btn-red">Edytuj</a>
+                  <a href="/uslugi/<%= page.slug %>" target="_blank" class="btn btn-sm">Podgląd</a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

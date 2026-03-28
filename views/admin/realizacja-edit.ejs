@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <%- include('_sidebar', { active: 'realizacje' }) %>
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1 class="admin-page-title"><%= realizacja ? 'Edytuj realizację' : 'Nowa realizacja' %></h1>
+      <a href="/admin/realizacje" class="btn btn-sm">← Lista</a>
+    </div>
+    <div class="admin-content">
+      <% let dzialanieText = ''; let efektyText = ''; %>
+      <% if (realizacja) { %>
+        <% try { dzialanieText = JSON.parse(realizacja.dzialania || '[]').join('\n'); } catch(e) {} %>
+        <% try { efektyText = JSON.parse(realizacja.efekty || '[]').join('\n'); } catch(e) {} %>
+      <% } %>
+
+      <form action="<%= realizacja ? '/admin/realizacje/' + realizacja.id + '/edit' : '/admin/realizacje/new' %>" method="POST">
+        <div class="form-grid-2">
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Informacje podstawowe</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Tytuł (nazwa firmy / projektu) *</label>
+                  <input type="text" name="title" value="<%= realizacja ? realizacja.title : '' %>" required>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                  <div class="form-group">
+                    <label>Branża</label>
+                    <input type="text" name="branza" value="<%= realizacja ? (realizacja.branza || '') : '' %>" placeholder="np. Stomatologia">
+                  </div>
+                  <div class="form-group">
+                    <label>Miasto</label>
+                    <input type="text" name="miasto" value="<%= realizacja ? (realizacja.miasto || '') : '' %>" placeholder="np. Tarnobrzeg">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Slug URL</label>
+                  <input type="text" name="slug" value="<%= realizacja ? realizacja.slug : '' %>" placeholder="auto-generowany">
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Problem</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <textarea name="problem" rows="5" placeholder="Opisz problem, z którym firma zgłosiła się do Ciebie..."><%= realizacja ? (realizacja.problem || '') : '' %></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Działania i efekty</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Działania (jedno na linię)</label>
+                  <textarea name="dzialania" rows="6" placeholder="Optymalizacja Google Business Profile&#10;Nowa strona internetowa&#10;Kampania Google Ads"><%= dzialanieText %></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Efekty mierzalne (jedno na linię)</label>
+                  <textarea name="efekty" rows="6" placeholder="Pozycja #1 w Google Maps&#10;340% wzrost telefonów&#10;47 nowych klientów w Q1"><%= efektyText %></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-bottom:24px;">
+              <div class="card-header"><h2>Cytat klienta</h2></div>
+              <div style="padding:24px;">
+                <div class="form-group">
+                  <label>Treść cytatu</label>
+                  <textarea name="cytat" rows="4" placeholder="Wspaniała współpraca..."><%= realizacja ? (realizacja.cytat || '') : '' %></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Autor cytatu</label>
+                  <input type="text" name="cytat_autor" value="<%= realizacja ? (realizacja.cytat_autor || '') : '' %>" placeholder="Jan Kowalski, właściciel firmy XYZ">
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="margin-bottom:24px;">
+              <div style="padding:24px;">
+                <div class="form-check">
+                  <label>
+                    <input type="checkbox" name="published" value="1" <%= !realizacja || realizacja.published ? 'checked' : '' %>>
+                    Widoczna na stronie
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+              <button type="submit" class="btn btn-red"><%= realizacja ? 'Zapisz zmiany' : 'Dodaj realizację' %></button>
+              <a href="/admin/realizacje" class="btn">Anuluj</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

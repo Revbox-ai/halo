@@ -1,0 +1,122 @@
+<%- include('partials/head', { title, settings }) %>
+<% const currentPage = 'realizacje'; %>
+<%- include('partials/nav') %>
+
+<!-- HERO -->
+<section style="background:var(--black); padding:140px 60px 80px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
+  <div class="section-inner" style="position:relative; z-index:1; max-width:900px;">
+    <div style="margin-bottom:24px;">
+      <a href="/realizacje" style="font-size:13px; color:rgba(255,255,255,0.4); text-decoration:none; letter-spacing:1px; text-transform:uppercase; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">← Wszystkie realizacje</a>
+    </div>
+    <div style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:16px; display:flex; align-items:center; gap:12px;">
+      <span style="width:32px; height:2px; background:var(--red); display:block;"></span>
+      <%= realizacja.branza %> · <%= realizacja.miasto %>
+    </div>
+    <h1 style="font-family:var(--font-display); font-size:clamp(48px,5vw,80px); color:white; line-height:1; margin-bottom:20px;">
+      <%= realizacja.title %>
+    </h1>
+  </div>
+</section>
+
+<!-- CASE STUDY CONTENT -->
+<section style="background:white; padding:80px 60px;">
+  <div class="section-inner" style="max-width:900px;">
+
+    <!-- Problem -->
+    <div class="fade-in" style="margin-bottom:60px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:48px; height:48px; background:var(--black); display:flex; align-items:center; justify-content:center; color:white; font-family:var(--font-display); font-size:20px; flex-shrink:0;">01</div>
+        <h2 style="font-family:var(--font-display); font-size:36px; color:var(--black);">Problem</h2>
+      </div>
+      <div style="padding-left:64px; border-left:3px solid #eee; margin-left:22px;">
+        <p style="font-size:16px; line-height:1.8; color:#444;"><%= realizacja.problem %></p>
+      </div>
+    </div>
+
+    <!-- Działania -->
+    <div class="fade-in" style="margin-bottom:60px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:48px; height:48px; background:var(--red); display:flex; align-items:center; justify-content:center; color:white; font-family:var(--font-display); font-size:20px; flex-shrink:0;">02</div>
+        <h2 style="font-family:var(--font-display); font-size:36px; color:var(--black);">Działania</h2>
+      </div>
+      <div style="padding-left:64px; border-left:3px solid var(--red); margin-left:22px;">
+        <ul style="list-style:none;">
+          <% for (const item of realizacja.dzialanieArr) { %>
+            <li style="display:flex; align-items:flex-start; gap:12px; margin-bottom:16px;">
+              <span style="color:var(--red); font-weight:700; flex-shrink:0; margin-top:2px;">✓</span>
+              <span style="font-size:15px; line-height:1.6; color:#444;"><%= item %></span>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Efekty -->
+    <div class="fade-in" style="margin-bottom:60px;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:48px; height:48px; background:var(--black); display:flex; align-items:center; justify-content:center; color:white; font-family:var(--font-display); font-size:20px; flex-shrink:0;">03</div>
+        <h2 style="font-family:var(--font-display); font-size:36px; color:var(--black);">Efekty mierzalne</h2>
+      </div>
+      <div style="padding-left:64px; margin-left:22px; display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:16px;">
+        <% for (const efekt of realizacja.efektyArr) { %>
+          <div style="background:var(--gray-light); padding:20px 24px; border-top:3px solid var(--red);">
+            <p style="font-size:15px; font-weight:700; color:var(--black); line-height:1.4;"><%= efekt %></p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Cytat -->
+    <% if (realizacja.cytat) { %>
+      <div class="fade-in" style="background:var(--black); padding:48px; margin-bottom:60px; position:relative;">
+        <div style="font-size:72px; color:var(--red); font-family:var(--font-display); line-height:0.8; margin-bottom:20px; opacity:0.6;">"</div>
+        <p style="font-size:20px; line-height:1.6; color:rgba(255,255,255,0.9); font-style:italic; margin-bottom:24px;">
+          <%= realizacja.cytat %>
+        </p>
+        <% if (realizacja.cytat_autor) { %>
+          <div style="font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--red);">— <%= realizacja.cytat_autor %></div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- INNE REALIZACJE -->
+<% if (inne.length > 0) { %>
+<section style="background:var(--gray-light); padding:80px 60px;">
+  <div class="section-inner">
+    <h2 style="font-family:var(--font-display); font-size:40px; color:var(--black); margin-bottom:40px;">Inne <em style="color:var(--red); font-style:normal;">realizacje</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+      <% for (const r of inne) { %>
+        <% let ef = []; try { ef = JSON.parse(r.efekty || '[]'); } catch(e) {} %>
+        <a href="/realizacje/<%= r.slug %>" style="text-decoration:none;" class="fade-in">
+          <div style="background:white; padding:28px; border-top:3px solid transparent; transition:border-color .2s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='transparent'">
+            <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:8px;"><%= r.branza %></div>
+            <h3 style="font-size:16px; font-weight:700; color:var(--black); margin-bottom:8px;"><%= r.title %></h3>
+            <% if (ef.length > 0) { %><p style="font-size:13px; color:var(--gray);">📈 <%= ef[0] %></p><% } %>
+          </div>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label">Następny projekt</div>
+    <h2 class="cta-title">Twoja firma<br>może być <em>tutaj</em></h2>
+    <p class="cta-sub">Porozmawiajmy o tym, co chcesz osiągnąć. Bezpłatna konsultacja, bez zobowiązań.</p>
+    <div class="cta-btns">
+      <a href="/kontakt" class="btn-primary">Umów konsultację</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script src="/js/extra.js"></script>
+</body>
+</html>

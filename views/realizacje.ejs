@@ -1,0 +1,77 @@
+<%- include('partials/head', { title, settings }) %>
+<% const currentPage = 'realizacje'; %>
+<%- include('partials/nav') %>
+
+<!-- HERO -->
+<section style="background:var(--black); padding:140px 60px 80px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
+  <div class="section-inner" style="position:relative; z-index:1;">
+    <div class="hero-label">Portfolio</div>
+    <h1 style="font-family:var(--font-display); font-size:clamp(64px,7vw,100px); color:white; line-height:0.92; margin-bottom:20px;">
+      Realizacje<br>i <em style="color:var(--red); font-style:normal;">efekty</em>
+    </h1>
+    <p style="font-size:16px; color:rgba(255,255,255,0.5); max-width:550px; line-height:1.7;">
+      Konkretne projekty, mierzalne wyniki. Każda realizacja to prawdziwa historia firmy, która zdecydowała się działać online.
+    </p>
+  </div>
+</section>
+
+<!-- REALIZACJE GRID -->
+<section style="background:white; padding:80px 60px;">
+  <div class="section-inner">
+    <% if (realizacje.length === 0) { %>
+      <div style="text-align:center; padding:80px 0; color:var(--gray);">
+        <div style="font-size:48px; margin-bottom:16px;">📂</div>
+        <p style="font-size:18px;">Brak realizacji do wyświetlenia.</p>
+      </div>
+    <% } else { %>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px,1fr)); gap:28px;">
+        <% for (const r of realizacje) { %>
+          <% let efektyArr = []; try { efektyArr = JSON.parse(r.efekty || '[]'); } catch(e) {} %>
+          <a href="/realizacje/<%= r.slug %>" style="text-decoration:none; display:block;" class="fade-in">
+            <div style="border:1px solid #eee; height:100%; display:flex; flex-direction:column; transition:box-shadow .25s, transform .25s;" onmouseover="this.style.boxShadow='0 16px 48px rgba(0,0,0,0.1)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)'">
+              <div style="background:var(--black); padding:32px;">
+                <div style="font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:8px; display:flex; align-items:center; gap:8px;">
+                  <span style="display:inline-block; width:20px; height:1px; background:var(--red);"></span>
+                  <%= r.branza %>
+                </div>
+                <h3 style="font-size:22px; font-weight:700; color:white; margin-bottom:8px; line-height:1.2;"><%= r.title %></h3>
+                <div style="font-size:13px; color:rgba(255,255,255,0.4); display:flex; align-items:center; gap:6px;">📍 <%= r.miasto %></div>
+              </div>
+              <div style="padding:28px 32px; flex:1; display:flex; flex-direction:column;">
+                <p style="font-size:14px; line-height:1.7; color:#555; margin-bottom:20px; flex:1;"><%= r.problem.substring(0,120) %>...</p>
+                <% if (efektyArr.length > 0) { %>
+                  <div style="background:var(--gray-light); padding:16px 20px; border-left:3px solid var(--red);">
+                    <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--red); margin-bottom:6px;">Główny efekt</div>
+                    <p style="font-size:14px; font-weight:700; color:var(--black); line-height:1.4;"><%= efektyArr[0] %></p>
+                  </div>
+                <% } %>
+                <div style="margin-top:20px; font-size:13px; color:var(--red); font-weight:600; letter-spacing:0.5px; display:flex; align-items:center; gap:6px;">
+                  Czytaj więcej <span>→</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label">Twój projekt</div>
+    <h2 class="cta-title">Chcesz być<br>na tej <em>liście?</em></h2>
+    <p class="cta-sub">Porozmawiajmy o Twojej firmie i celach. Bezpłatna konsultacja, bez zobowiązań.</p>
+    <div class="cta-btns">
+      <a href="/kontakt" class="btn-primary">Umów konsultację</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script src="/js/extra.js"></script>
+</body>
+</html>

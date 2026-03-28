@@ -1,0 +1,209 @@
+/* ── EXTRA STYLES ───────────────────────────────────────── */
+
+.section-label-white::before { background: white; }
+
+/* Nav dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10,10,10,0.98);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 2px solid var(--red);
+  min-width: 280px;
+  list-style: none;
+  padding: 8px 0;
+  padding-top: 16px;
+  margin-top: 0;
+  z-index: 200;
+  backdrop-filter: blur(12px);
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  text-transform: none;
+  transition: color .2s, background .2s;
+}
+.nav-dropdown-menu li a:hover {
+  color: var(--white);
+  background: rgba(230,51,41,0.1);
+}
+.nav-arrow { font-size: 10px; margin-left: 2px; }
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  transition: transform .3s, opacity .3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  overflow: hidden;
+}
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  transition: color .2s;
+}
+.faq-item:hover .faq-question,
+.faq-item.open .faq-question { color: var(--red); }
+.faq-icon {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--red);
+  transition: transform .3s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #555;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease, padding .3s;
+  padding-bottom: 0;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding-bottom: 20px;
+}
+
+/* ── BLOG CONTENT ────────────────────────────────────────── */
+.blog-content h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--black);
+  margin: 40px 0 16px;
+  line-height: 1.1;
+}
+.blog-content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 28px 0 12px;
+}
+.blog-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+.blog-content ul, .blog-content ol {
+  margin: 16px 0 20px 20px;
+}
+.blog-content li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 8px;
+}
+.blog-content strong { color: var(--black); }
+.blog-content a { color: var(--red); text-decoration: underline; }
+.blog-content blockquote {
+  border-left: 4px solid var(--red);
+  padding: 16px 24px;
+  background: var(--gray-light);
+  margin: 24px 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* ── FOOTER SOCIAL LINKS ─────────────────────────────────── */
+.footer-social-link {
+  color: rgba(255,255,255,0.3);
+  transition: color .2s;
+}
+.footer-social-link:hover { color: var(--red); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  nav { padding: 0 24px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    padding: 20px;
+    gap: 4px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    z-index: 99;
+  }
+  .nav-dropdown-menu {
+    position: static;
+    transform: none;
+    border: none;
+    border-left: 2px solid var(--red);
+    padding: 0;
+    background: transparent;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s;
+  }
+  .nav-dropdown.open .nav-dropdown-menu { max-height: 300px; }
+
+  .hero { padding: 100px 20px 60px; }
+  .hero h1 { font-size: 56px; }
+  .services { padding: 60px 20px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .results-inner { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  footer { padding: 40px 20px 28px; }
+  section[style*="padding: 100px 60px"],
+  section[style*="padding:100px 60px"] { padding: 60px 20px !important; }
+}
+
+/* Audyt SEO form placeholders */
+#audyt input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
