@@ -114,6 +114,29 @@ router.get('/uslugi/:slug', (req, res, next) => {
   });
 });
 
+// ─── STRONY LOKALIZACYJNE /miasto/usluga ─────────────────
+router.get('/:miasto/:usluga', (req, res, next) => {
+  const db = getDb();
+  const settings = getSettings();
+  const slug = `${req.params.miasto}/${req.params.usluga}`;
+  const page = db.prepare('SELECT * FROM pages WHERE slug = ?').get(slug);
+  if (!page) { db.close(); return next(); }
+
+  let content = {};
+  try { content = JSON.parse(page.content_json || '{}'); } catch(e) {}
+
+  const realizacje = db.prepare('SELECT * FROM realizacje WHERE published = 1 ORDER BY id DESC LIMIT 3').all();
+  const relatedSlugs = content.powiazane_uslugi || [];
+  let relatedPages = [];
+  if (relatedSlugs.length > 0) {
+    const placeholders = relatedSlugs.map(() => '?').join(',');
+    relatedPages = db.prepare(`SELECT * FROM pages WHERE slug IN (${placeholders})`).all(...relatedSlugs);
+  }
+
+  db.close();
+  res.render('usluga', { title: page.title + ' — Halo', settings, page, content, realizacje, relatedPages });
+});
+
 // ─── CONTACT FORM (AJAX / from service pages) ───────────
 router.post('/kontakt-form', (req, res) => {
   res.json({ success: true, message: 'Dziękujemy! Odezwiemy się w ciągu 24 godzin.' });
