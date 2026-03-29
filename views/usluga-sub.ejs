@@ -2,24 +2,24 @@
 <% const currentPage = 'uslugi'; %>
 <%- include('partials/nav') %>
 
-<!-- BREADCRUMB + HERO -->
+<!-- BREADCRUMB + HERO — H1 z frazą pod-usługa + miasto -->
 <section style="background:var(--black); padding:140px 60px 80px; position:relative; overflow:hidden;">
   <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
   <div style="position:absolute; width:500px; height:500px; background:radial-gradient(circle, rgba(230,51,41,0.1) 0%, transparent 70%); top:-80px; right:80px; pointer-events:none;"></div>
   <div class="section-inner" style="position:relative; z-index:1; max-width:900px;">
 
-    <!-- Breadcrumb -->
-    <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+    <!-- Breadcrumb (schema-friendly) -->
+    <nav aria-label="breadcrumb" style="font-size:12px; color:rgba(255,255,255,0.35); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
       <a href="/" style="color:rgba(255,255,255,0.35); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Start</a>
-      <span>›</span>
+      <span aria-hidden="true">›</span>
       <a href="/<%= miasto %>" style="color:rgba(255,255,255,0.35); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'"><%= miasto.charAt(0).toUpperCase() + miasto.slice(1).replace(/-/g,' ') %></a>
-      <span>›</span>
+      <span aria-hidden="true">›</span>
       <% if (parentPage) { %>
         <a href="/<%= miasto %>/<%= usluga %>" style="color:rgba(255,255,255,0.35); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'"><%= parentPage.title.split(' — ')[0].split(' Tarnobrzeg')[0] %></a>
-        <span>›</span>
+        <span aria-hidden="true">›</span>
       <% } %>
       <span style="color:rgba(255,255,255,0.6);"><%= page.title.split(' Tarnobrzeg')[0].split(' — ')[0] %></span>
-    </div>
+    </nav>
 
     <div style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:16px; display:flex; align-items:center; gap:12px;">
       <span style="width:32px; height:2px; background:var(--red); display:block;"></span>
@@ -40,24 +40,29 @@
   </div>
 </section>
 
-<!-- WSTĘP SEO -->
+<!-- WSTĘP SEO — frazy lokalne bez innych miast (Tarnobrzeg only) -->
 <% if (content.wstep) { %>
-<section style="background:white; padding:60px 60px 0;">
-  <div class="section-inner" style="max-width:780px;">
+<section style="background:white; padding:72px 60px 0;">
+  <div class="section-inner" style="max-width:800px;">
+    <% if (content.h2_wstep) { %>
+      <h2 style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,28px); color:var(--black); margin-bottom:24px; font-weight:700;"><%= content.h2_wstep %></h2>
+    <% } %>
     <p style="font-size:16px; line-height:1.9; color:#555;"><%= content.wstep %></p>
   </div>
 </section>
 <% } %>
 
-<!-- OPIS + KORZYŚCI -->
-<section style="background:white; padding:100px 60px;">
+<!-- OPIS + KORZYŚCI — H2 z frazą pod-usługi -->
+<section style="background:white; padding:80px 60px 100px;">
   <div class="section-inner">
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px;">
 
-      <!-- Opis i zakres -->
+      <!-- Opis -->
       <div class="fade-in">
         <div class="section-label">O usłudze</div>
-        <h2 class="section-title" style="margin-bottom:24px;">Na czym <em>polega</em><br>ta usługa?</h2>
+        <h2 class="section-title" style="margin-bottom:24px;">
+          <%- (content.h2_opis || 'Na czym <em>polega</em><br>ta usługa?') %>
+        </h2>
         <% if (content.opis) { %>
           <p style="font-size:16px; line-height:1.8; color:#444; margin-bottom:28px;"><%= content.opis %></p>
         <% } %>
@@ -69,7 +74,9 @@
       <!-- Korzyści -->
       <div class="fade-in">
         <div class="section-label">Efekty</div>
-        <h2 class="section-title" style="margin-bottom:36px;">Korzyści<br><em>dla firmy</em></h2>
+        <h2 class="section-title" style="margin-bottom:36px;">
+          <%- (content.h2_korzysci || 'Korzyści<br><em>dla firmy</em>') %>
+        </h2>
         <% if (content.korzysci && content.korzysci.length > 0) { %>
           <div style="display:flex; flex-direction:column; gap:14px;">
             <% for (let i = 0; i < content.korzysci.length; i++) { %>
@@ -85,27 +92,31 @@
   </div>
 </section>
 
-<!-- OBSZAR DZIAŁANIA -->
+<!-- OBSZAR DZIAŁANIA — tylko Tarnobrzeg na sub-stronach -->
 <% if (content.obszar_dzialania) { %>
-<section style="background:white; padding:0 60px 60px;">
-  <div class="section-inner" style="max-width:800px; border-top:1px solid #f0f0f0; padding-top:40px; display:flex; align-items:flex-start; gap:24px;">
+<section style="background:var(--gray-light); padding:40px 60px;">
+  <div class="section-inner" style="max-width:800px; display:flex; align-items:flex-start; gap:24px;">
     <div style="flex-shrink:0; width:40px; height:40px; background:var(--red); display:flex; align-items:center; justify-content:center; margin-top:2px;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
     </div>
     <div>
-      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:6px;">Obszar działania</div>
+      <h3 style="font-family:var(--font-display); font-size:16px; color:var(--black); margin-bottom:6px; font-weight:700; letter-spacing:0.5px;">
+        <%= content.h2_obszar || 'Gdzie działamy' %>
+      </h3>
       <p style="font-size:14px; line-height:1.7; color:var(--text);"><%= content.obszar_dzialania %></p>
     </div>
   </div>
 </section>
 <% } %>
 
-<!-- FAQ -->
+<!-- FAQ — H2 + pytania jako H3 (schema FAQ-friendly) -->
 <% if (content.faq && content.faq.length > 0) { %>
-<section style="background:var(--gray-light); padding:80px 60px;">
+<section style="background:white; padding:80px 60px;" id="faq">
   <div class="section-inner" style="max-width:800px;">
     <div class="section-label fade-in">FAQ</div>
-    <h2 class="section-title fade-in" style="margin-bottom:48px;">Często zadawane<br><em>pytania</em></h2>
+    <h2 class="section-title fade-in" style="margin-bottom:48px;">
+      <%- (content.h2_faq || 'Często zadawane<br><em>pytania</em>') %>
+    </h2>
     <% for (const f of content.faq) { %>
       <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
         <div class="faq-question">
@@ -119,15 +130,15 @@
 </section>
 <% } %>
 
-<!-- POWIĄZANE PODSTRONY -->
+<!-- POWIĄZANE PODSTRONY — internal linking (hub & spoke) -->
 <% if (siblings && siblings.length > 0) { %>
-<section style="background:white; padding:80px 60px;">
+<section style="background:var(--gray-light); padding:80px 60px;">
   <div class="section-inner">
     <h2 style="font-family:var(--font-display); font-size:32px; color:var(--black); margin-bottom:28px;">Inne elementy <em style="color:var(--red); font-style:normal;">tej usługi</em></h2>
     <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px;">
       <% for (const s of siblings) { %>
         <% const shortT = s.title.split(' Tarnobrzeg')[0].split(' — ')[0]; %>
-        <a href="/<%= s.slug %>" style="text-decoration:none; background:var(--gray-light); padding:16px 20px; border-left:3px solid transparent; display:flex; align-items:center; justify-content:space-between; gap:8px; transition:all .2s; font-size:14px; color:var(--text); font-weight:500;" onmouseover="this.style.borderColor='var(--red)';this.style.background='#f0f0f0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--gray-light)'">
+        <a href="/<%= s.slug %>" style="text-decoration:none; background:white; padding:16px 20px; border-left:3px solid transparent; display:flex; align-items:center; justify-content:space-between; gap:8px; transition:all .2s; font-size:14px; color:var(--text); font-weight:500;" onmouseover="this.style.borderColor='var(--red)';this.style.background='#f8f8f8'" onmouseout="this.style.borderColor='transparent';this.style.background='white'">
           <%= shortT %> <span style="color:var(--red);">→</span>
         </a>
       <% } %>

@@ -2,7 +2,7 @@
 <% const currentPage = 'uslugi'; %>
 <%- include('partials/nav') %>
 
-<!-- HERO -->
+<!-- HERO — H1 z frazą usługa + miasto -->
 <section style="background:var(--black); padding:140px 60px 80px; position:relative; overflow:hidden;">
   <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
   <div style="position:absolute; width:600px; height:600px; background:radial-gradient(circle, rgba(230,51,41,0.12) 0%, transparent 70%); top:-100px; right:100px; pointer-events:none;"></div>
@@ -24,11 +24,11 @@
   </div>
 </section>
 
-<!-- DLA KOGO -->
+<!-- DLA KOGO — H2 z lokalną frazą -->
 <% if (content.dla_kogo) { %>
 <section style="background:#111; padding:60px; border-bottom:1px solid rgba(255,255,255,0.06);">
-  <div class="section-inner" style="max-width:900px; display:flex; align-items:center; gap:40px;">
-    <div style="flex-shrink:0; width:56px; height:56px; background:var(--red); display:flex; align-items:center; justify-content:center;">
+  <div class="section-inner" style="max-width:900px; display:flex; align-items:flex-start; gap:40px;">
+    <div style="flex-shrink:0; width:56px; height:56px; background:var(--red); display:flex; align-items:center; justify-content:center; margin-top:4px;">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
@@ -37,33 +37,40 @@
       </svg>
     </div>
     <div>
-      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:6px;">Dla kogo</div>
-      <p style="font-size:16px; color:rgba(255,255,255,0.8); line-height:1.6;"><%= content.dla_kogo %></p>
+      <h2 style="font-family:var(--font-display); font-size:22px; color:white; margin-bottom:10px; font-weight:700;">
+        <%= content.h2_dla_kogo || 'Dla kogo jest ta usługa?' %>
+      </h2>
+      <p style="font-size:16px; color:rgba(255,255,255,0.75); line-height:1.7;"><%= content.dla_kogo %></p>
     </div>
   </div>
 </section>
 <% } %>
 
-<!-- WSTĘP SEO -->
+<!-- WSTĘP SEO — paragraf(y) z frazami lokalnymi -->
 <% if (content.wstep) { %>
-<section style="background:white; padding:60px 60px 0;">
-  <div class="section-inner" style="max-width:780px;">
+<section style="background:white; padding:72px 60px 0;">
+  <div class="section-inner" style="max-width:800px;">
+    <% if (content.h2_wstep) { %>
+      <h2 class="section-title" style="margin-bottom:28px; font-size:clamp(22px,3vw,32px);"><%= content.h2_wstep %></h2>
+    <% } %>
     <% content.wstep.split('\n').filter(function(l){ return l.trim(); }).forEach(function(para){ %>
-      <p style="font-size:16px; line-height:1.9; color:#555; margin-bottom:16px;"><%= para %></p>
+      <p style="font-size:16px; line-height:1.9; color:#555; margin-bottom:18px;"><%= para %></p>
     <% }); %>
   </div>
 </section>
 <% } %>
 
-<!-- CO OBEJMUJE + KORZYŚCI -->
-<section style="background:white; padding:100px 60px;" id="zakres">
+<!-- CO OBEJMUJE + KORZYŚCI — H2 z lokalną frazą -->
+<section style="background:white; padding:80px 60px 100px;" id="zakres">
   <div class="section-inner">
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px;">
 
       <!-- Co obejmuje -->
       <div class="fade-in">
         <div class="section-label">Zakres</div>
-        <h2 class="section-title" style="margin-bottom:36px;">Co <em>obejmuje</em><br>usługa?</h2>
+        <h2 class="section-title" style="margin-bottom:36px;">
+          <%= content.h2_zakres ? content.h2_zakres.replace(/\n/g,'<br>') : 'Co <em>obejmuje</em><br>usługa?' %>
+        </h2>
         <% if (content.co_obejmuje && content.co_obejmuje.length > 0) { %>
           <ul style="list-style:none;">
             <% for (const item of content.co_obejmuje) { %>
@@ -83,7 +90,9 @@
       <!-- Korzyści -->
       <div class="fade-in">
         <div class="section-label">Efekty</div>
-        <h2 class="section-title" style="margin-bottom:36px;">Korzyści<br><em>biznesowe</em></h2>
+        <h2 class="section-title" style="margin-bottom:36px;">
+          <%= content.h2_korzysci || 'Korzyści<br><em>biznesowe</em>' %>
+        </h2>
         <% if (content.korzysci && content.korzysci.length > 0) { %>
           <div style="display:flex; flex-direction:column; gap:16px;">
             <% for (let i = 0; i < content.korzysci.length; i++) { %>
@@ -99,12 +108,14 @@
   </div>
 </section>
 
-<!-- DLACZEGO WARTO -->
+<!-- DLACZEGO WARTO — H2 z lokalną frazą -->
 <% if (content.dlaczego_warto) { %>
 <section style="background:#111; padding:80px 60px;">
   <div class="section-inner" style="max-width:900px;">
     <div class="section-label fade-in" style="color:var(--red);">Dlaczego Halo</div>
-    <h2 class="section-title fade-in" style="color:white; margin-bottom:32px;">Dlaczego warto<br><em>wybrać nas</em></h2>
+    <h2 class="section-title fade-in" style="color:white; margin-bottom:32px;">
+      <%- (content.h2_dlaczego || 'Dlaczego warto<br><em>wybrać nas</em>') %>
+    </h2>
     <p class="fade-in" style="font-size:16px; line-height:1.9; color:rgba(255,255,255,0.7); max-width:760px;"><%= content.dlaczego_warto %></p>
   </div>
 </section>
@@ -132,7 +143,7 @@
 </section>
 <% } %>
 
-<!-- PROCES -->
+<!-- PROCES — H3 dla kroków -->
 <section style="background:white; padding:100px 60px;">
   <div class="section-inner">
     <div class="section-label fade-in">Jak działamy</div>
@@ -148,7 +159,7 @@
       <% for (const s of steps) { %>
         <div class="process-step fade-in">
           <div class="process-num"><%= s.n %></div>
-          <h4><%= s.title %></h4>
+          <h3><%= s.title %></h3>
           <p><%= s.desc %></p>
         </div>
       <% } %>
@@ -156,54 +167,33 @@
   </div>
 </section>
 
-<!-- CENNIK (tymczasowo ukryty — wycena indywidualna)
-<% if (content.cennik && content.cennik.length > 0) { %>
-<section style="background:var(--black); padding:100px 60px;">
-  <div class="section-inner">
-    <div class="section-label fade-in">Cennik</div>
-    <h2 class="section-title fade-in" style="color:white; margin-bottom:60px;">Cennik <em>orientacyjny</em></h2>
-    <div style="display:grid; grid-template-columns:repeat(<%= content.cennik.length %>,1fr); gap:3px;">
-      <% for (let i = 0; i < content.cennik.length; i++) { %>
-        <% const plan = content.cennik[i]; %>
-        <div class="fade-in" style="background:<%= i === 1 ? 'var(--red)' : '#111' %>; padding:48px 36px; <%= i === 1 ? '' : '' %>">
-          <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:<%= i === 1 ? 'rgba(255,255,255,0.8)' : 'var(--red)' %>; margin-bottom:12px;"><%= plan.nazwa %></div>
-          <div style="font-family:var(--font-display); font-size:36px; color:white; line-height:1; margin-bottom:12px;"><%= plan.cena %></div>
-          <p style="font-size:14px; color:<%= i === 1 ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.5)' %>; line-height:1.6;"><%= plan.opis %></p>
-          <div style="margin-top:28px;">
-            <a href="/kontakt" style="display:inline-block; padding:12px 24px; background:<%= i === 1 ? 'white' : 'var(--red)' %>; color:<%= i === 1 ? 'var(--red)' : 'white' %>; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-              Zapytaj o cenę →
-            </a>
-          </div>
-        </div>
-      <% } %>
-    </div>
-    <p style="font-size:13px; color:rgba(255,255,255,0.3); margin-top:20px; text-align:center;">* Ceny orientacyjne. Dokładna wycena po bezpłatnej konsultacji.</p>
-  </div>
-</section>
-<% } %>
--->
-
-<!-- OBSZAR DZIAŁANIA -->
+<!-- OBSZAR DZIAŁANIA — H2 z lokalną frazą -->
 <% if (content.obszar_dzialania) { %>
-<section style="background:var(--gray-light); padding:48px 60px;">
-  <div class="section-inner" style="max-width:900px; display:flex; align-items:flex-start; gap:32px;">
-    <div style="flex-shrink:0; width:48px; height:48px; background:var(--red); display:flex; align-items:center; justify-content:center; margin-top:2px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-    </div>
-    <div>
-      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Obszar działania</div>
-      <p style="font-size:15px; line-height:1.7; color:var(--text); max-width:700px;"><%= content.obszar_dzialania %></p>
+<section style="background:var(--gray-light); padding:56px 60px;">
+  <div class="section-inner" style="max-width:900px;">
+    <div style="display:flex; align-items:flex-start; gap:32px;">
+      <div style="flex-shrink:0; width:48px; height:48px; background:var(--red); display:flex; align-items:center; justify-content:center; margin-top:4px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <h2 style="font-family:var(--font-display); font-size:22px; color:var(--black); margin-bottom:10px; font-weight:700;">
+          <%= content.h2_obszar || 'Obszar działania' %>
+        </h2>
+        <p style="font-size:15px; line-height:1.75; color:var(--text); max-width:700px;"><%= content.obszar_dzialania %></p>
+      </div>
     </div>
   </div>
 </section>
 <% } %>
 
-<!-- FAQ -->
+<!-- FAQ — H2 + H3 per pytanie (SEO snippet friendly) -->
 <% if (content.faq && content.faq.length > 0) { %>
-<section style="background:var(--gray-light); padding:100px 60px;">
+<section style="background:white; padding:100px 60px;" id="faq">
   <div class="section-inner" style="max-width:800px;">
     <div class="section-label fade-in">FAQ</div>
-    <h2 class="section-title fade-in" style="margin-bottom:60px;">Często zadawane<br><em>pytania</em></h2>
+    <h2 class="section-title fade-in" style="margin-bottom:60px;">
+      <%- (content.h2_faq || 'Często zadawane<br><em>pytania</em>') %>
+    </h2>
     <% for (const f of content.faq) { %>
       <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
         <div class="faq-question">
@@ -218,14 +208,14 @@
 <% } %>
 
 <!-- KONTAKT FORM -->
-<section style="background:white; padding:100px 60px;" id="kontakt">
+<section style="background:var(--gray-light); padding:100px 60px;" id="kontakt">
   <div class="section-inner" style="max-width:700px; text-align:center;">
     <div class="section-label fade-in" style="justify-content:center;">Gotowy?</div>
     <h2 class="section-title fade-in" style="margin-bottom:16px; text-align:center;">Zacznijmy<br><em>współpracę</em></h2>
     <p style="font-size:16px; color:var(--gray); margin-bottom:48px; text-align:center;" class="fade-in">
       Skontaktuj się — bezpłatna konsultacja, bez zobowiązań.
     </p>
-    <div id="contact-success" style="display:none; background:var(--gray-light); border-left:4px solid var(--red); padding:20px 24px; margin-bottom:24px; text-align:left;">
+    <div id="contact-success" style="display:none; background:white; border-left:4px solid var(--red); padding:20px 24px; margin-bottom:24px; text-align:left;">
       <strong>Dziękujemy!</strong> Odezwiemy się w ciągu 24 godzin.
     </div>
     <form action="/kontakt" method="POST" id="service-contact-form" style="text-align:left;" class="fade-in">
@@ -233,20 +223,20 @@
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
         <div>
           <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Imię *</label>
-          <input type="text" name="name" required style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+          <input type="text" name="name" required style="width:100%; padding:14px 18px; border:1px solid #ddd; background:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
         </div>
         <div>
           <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Telefon</label>
-          <input type="tel" name="phone" style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+          <input type="tel" name="phone" style="width:100%; padding:14px 18px; border:1px solid #ddd; background:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
         </div>
       </div>
       <div style="margin-bottom:16px;">
         <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">E-mail *</label>
-        <input type="email" name="email" required style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
+        <input type="email" name="email" required style="width:100%; padding:14px 18px; border:1px solid #ddd; background:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'">
       </div>
       <div style="margin-bottom:24px;">
         <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:8px;">Wiadomość</label>
-        <textarea name="message" rows="4" style="width:100%; padding:14px 18px; border:1px solid #ddd; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s; resize:vertical;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'"></textarea>
+        <textarea name="message" rows="4" style="width:100%; padding:14px 18px; border:1px solid #ddd; background:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s; resize:vertical;" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='#ddd'"></textarea>
       </div>
       <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-family:var(--font-body);">
         Wyślij zapytanie →
@@ -257,13 +247,13 @@
 
 <!-- POWIĄZANE USŁUGI -->
 <% if (relatedPages && relatedPages.length > 0) { %>
-<section style="background:var(--gray-light); padding:60px;">
+<section style="background:white; padding:60px;">
   <div class="section-inner">
     <h2 style="font-family:var(--font-display); font-size:32px; color:var(--black); margin-bottom:28px;">Powiązane <em style="color:var(--red); font-style:normal;">usługi</em></h2>
     <div style="display:grid; grid-template-columns:repeat(<%= relatedPages.length %>,1fr); gap:16px;">
       <% for (const rp of relatedPages) { %>
         <% const shortTitle = rp.title.includes(' — ') ? rp.title.split(' — ')[0] : rp.title; %>
-        <a href="/uslugi/<%= rp.slug %>" style="text-decoration:none; background:white; padding:24px 28px; border-left:3px solid var(--red); display:flex; align-items:center; justify-content:space-between; gap:12px; transition:background .2s;" onmouseover="this.style.background='var(--red)'; this.querySelector('span').style.color='white'; this.querySelector('strong').style.color='white'" onmouseout="this.style.background='white'; this.querySelector('span').style.color='var(--text)'; this.querySelector('strong').style.color='var(--text)'">
+        <a href="/<%= rp.slug %>" style="text-decoration:none; background:var(--gray-light); padding:24px 28px; border-left:3px solid var(--red); display:flex; align-items:center; justify-content:space-between; gap:12px; transition:background .2s;" onmouseover="this.style.background='var(--red)'; this.querySelector('span').style.color='white'; this.querySelector('strong').style.color='white'" onmouseout="this.style.background='var(--gray-light)'; this.querySelector('span').style.color='var(--text)'; this.querySelector('strong').style.color='var(--text)'">
           <div>
             <strong style="font-size:15px; font-weight:700; color:var(--text); display:block; line-height:1.2; transition:color .2s;"><%= shortTitle %></strong>
           </div>
