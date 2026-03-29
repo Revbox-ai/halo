@@ -38,7 +38,7 @@
     </div>
     <div>
       <h2 style="font-family:var(--font-display); font-size:22px; color:white; margin-bottom:10px; font-weight:700;">
-        <%= content.h2_dla_kogo || 'Dla kogo jest ta usługa?' %>
+        <%- content.h2_dla_kogo || 'Dla kogo jest ta usługa?' %>
       </h2>
       <p style="font-size:16px; color:rgba(255,255,255,0.75); line-height:1.7;"><%= content.dla_kogo %></p>
     </div>
@@ -51,7 +51,7 @@
 <section style="background:white; padding:72px 60px 0;">
   <div class="section-inner" style="max-width:800px;">
     <% if (content.h2_wstep) { %>
-      <h2 class="section-title" style="margin-bottom:28px; font-size:clamp(22px,3vw,32px);"><%= content.h2_wstep %></h2>
+      <h2 class="section-title" style="margin-bottom:28px; font-size:clamp(22px,3vw,32px);"><%- content.h2_wstep %></h2>
     <% } %>
     <% content.wstep.split('\n').filter(function(l){ return l.trim(); }).forEach(function(para){ %>
       <p style="font-size:16px; line-height:1.9; color:#555; margin-bottom:18px;"><%= para %></p>
@@ -69,7 +69,7 @@
       <div class="fade-in">
         <div class="section-label">Zakres</div>
         <h2 class="section-title" style="margin-bottom:36px;">
-          <%= content.h2_zakres ? content.h2_zakres.replace(/\n/g,'<br>') : 'Co <em>obejmuje</em><br>usługa?' %>
+          <%- content.h2_zakres ? content.h2_zakres.replace(/\n/g,'<br>') : 'Co <em>obejmuje</em><br>usługa?' %>
         </h2>
         <% if (content.co_obejmuje && content.co_obejmuje.length > 0) { %>
           <ul style="list-style:none;">
@@ -91,7 +91,7 @@
       <div class="fade-in">
         <div class="section-label">Efekty</div>
         <h2 class="section-title" style="margin-bottom:36px;">
-          <%= content.h2_korzysci || 'Korzyści<br><em>biznesowe</em>' %>
+          <%- content.h2_korzysci || 'Korzyści<br><em>biznesowe</em>' %>
         </h2>
         <% if (content.korzysci && content.korzysci.length > 0) { %>
           <div style="display:flex; flex-direction:column; gap:16px;">
@@ -177,7 +177,7 @@
       </div>
       <div>
         <h2 style="font-family:var(--font-display); font-size:22px; color:var(--black); margin-bottom:10px; font-weight:700;">
-          <%= content.h2_obszar || 'Obszar działania' %>
+          <%- content.h2_obszar || 'Obszar działania' %>
         </h2>
         <p style="font-size:15px; line-height:1.75; color:var(--text); max-width:700px;"><%= content.obszar_dzialania %></p>
       </div>

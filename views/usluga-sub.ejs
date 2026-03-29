@@ -45,7 +45,7 @@
 <section style="background:white; padding:72px 60px 0;">
   <div class="section-inner" style="max-width:800px;">
     <% if (content.h2_wstep) { %>
-      <h2 style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,28px); color:var(--black); margin-bottom:24px; font-weight:700;"><%= content.h2_wstep %></h2>
+      <h2 style="font-family:var(--font-display); font-size:clamp(20px,2.5vw,28px); color:var(--black); margin-bottom:24px; font-weight:700;"><%- content.h2_wstep %></h2>
     <% } %>
     <p style="font-size:16px; line-height:1.9; color:#555;"><%= content.wstep %></p>
   </div>
@@ -101,7 +101,7 @@
     </div>
     <div>
       <h3 style="font-family:var(--font-display); font-size:16px; color:var(--black); margin-bottom:6px; font-weight:700; letter-spacing:0.5px;">
-        <%= content.h2_obszar || 'Gdzie działamy' %>
+        <%- content.h2_obszar || 'Gdzie działamy' %>
       </h3>
       <p style="font-size:14px; line-height:1.7; color:var(--text);"><%= content.obszar_dzialania %></p>
     </div>
