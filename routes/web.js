@@ -100,8 +100,23 @@ router.get('/lokalizacje', (req, res) => {
   res.render('lokalizacje', { title: page.title, settings, page, content });
 });
 
-// ─── USŁUGI (service pages) ──────────────────────────────
+// ─── USŁUGI (service pages) — 301 redirect na kanoniczne /:miasto/:usluga ───
+const USLUGI_REDIRECTS = {
+  'strony-internetowe-tarnobrzeg': '/tarnobrzeg/strony-internetowe',
+  'seo-tarnobrzeg': '/tarnobrzeg/seo',
+  'google-ads-tarnobrzeg': '/tarnobrzeg/google-ads',
+  'grafika-reklamowa-tarnobrzeg': '/tarnobrzeg/grafika-reklamowa',
+  'automatyzacje-firmy-tarnobrzeg': '/tarnobrzeg/automatyzacje',
+  'marketing-internetowy-tarnobrzeg': '/tarnobrzeg/marketing-internetowy',
+  'social-media-tarnobrzeg': '/tarnobrzeg/social-media',
+  'content-marketing-tarnobrzeg': '/tarnobrzeg/content-marketing',
+  'analityka-doradztwo-tarnobrzeg': '/tarnobrzeg/analityka-doradztwo',
+};
+
 router.get('/uslugi/:slug', (req, res, next) => {
+  const canonical = USLUGI_REDIRECTS[req.params.slug];
+  if (canonical) return res.redirect(301, canonical);
+
   const db = getDb();
   const settings = getSettings();
   const page = db.prepare('SELECT * FROM pages WHERE slug = ?').get(req.params.slug);
