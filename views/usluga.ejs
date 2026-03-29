@@ -73,14 +73,21 @@
         </h2>
         <% if (content.co_obejmuje && content.co_obejmuje.length > 0) { %>
           <ul style="list-style:none;">
-            <% for (const item of content.co_obejmuje) { %>
+            <% for (let i = 0; i < content.co_obejmuje.length; i++) { %>
+              <% const itemLink = content.co_obejmuje_links && content.co_obejmuje_links[i]; %>
               <li style="display:flex; align-items:flex-start; gap:16px; padding:16px 0; border-bottom:1px solid #f0f0f0;">
                 <span style="width:28px; height:28px; background:var(--red); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </span>
-                <span style="font-size:15px; color:var(--text); line-height:1.5;"><%= item %></span>
+                <% if (itemLink) { %>
+                  <a href="<%= itemLink %>" style="font-size:15px; color:var(--text); line-height:1.5; text-decoration:none; display:flex; align-items:center; gap:6px; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">
+                    <%= content.co_obejmuje[i] %> <span style="font-size:11px; opacity:0.5;">→</span>
+                  </a>
+                <% } else { %>
+                  <span style="font-size:15px; color:var(--text); line-height:1.5;"><%= content.co_obejmuje[i] %></span>
+                <% } %>
               </li>
             <% } %>
           </ul>
