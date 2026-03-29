@@ -40,6 +40,15 @@
   </div>
 </section>
 
+<!-- WSTĘP SEO -->
+<% if (content.wstep) { %>
+<section style="background:white; padding:60px 60px 0;">
+  <div class="section-inner" style="max-width:780px;">
+    <p style="font-size:16px; line-height:1.9; color:#555;"><%= content.wstep %></p>
+  </div>
+</section>
+<% } %>
+
 <!-- OPIS + KORZYŚCI -->
 <section style="background:white; padding:100px 60px;">
   <div class="section-inner">
@@ -75,6 +84,21 @@
     </div>
   </div>
 </section>
+
+<!-- OBSZAR DZIAŁANIA -->
+<% if (content.obszar_dzialania) { %>
+<section style="background:white; padding:0 60px 60px;">
+  <div class="section-inner" style="max-width:800px; border-top:1px solid #f0f0f0; padding-top:40px; display:flex; align-items:flex-start; gap:24px;">
+    <div style="flex-shrink:0; width:40px; height:40px; background:var(--red); display:flex; align-items:center; justify-content:center; margin-top:2px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <div>
+      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:6px;">Obszar działania</div>
+      <p style="font-size:14px; line-height:1.7; color:var(--text);"><%= content.obszar_dzialania %></p>
+    </div>
+  </div>
+</section>
+<% } %>
 
 <!-- FAQ -->
 <% if (content.faq && content.faq.length > 0) { %>

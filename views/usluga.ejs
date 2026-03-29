@@ -44,6 +44,17 @@
 </section>
 <% } %>
 
+<!-- WSTĘP SEO -->
+<% if (content.wstep) { %>
+<section style="background:white; padding:60px 60px 0;">
+  <div class="section-inner" style="max-width:780px;">
+    <% content.wstep.split('\n').filter(function(l){ return l.trim(); }).forEach(function(para){ %>
+      <p style="font-size:16px; line-height:1.9; color:#555; margin-bottom:16px;"><%= para %></p>
+    <% }); %>
+  </div>
+</section>
+<% } %>
+
 <!-- CO OBEJMUJE + KORZYŚCI -->
 <section style="background:white; padding:100px 60px;" id="zakres">
   <div class="section-inner">
@@ -87,6 +98,17 @@
     </div>
   </div>
 </section>
+
+<!-- DLACZEGO WARTO -->
+<% if (content.dlaczego_warto) { %>
+<section style="background:#111; padding:80px 60px;">
+  <div class="section-inner" style="max-width:900px;">
+    <div class="section-label fade-in" style="color:var(--red);">Dlaczego Halo</div>
+    <h2 class="section-title fade-in" style="color:white; margin-bottom:32px;">Dlaczego warto<br><em>wybrać nas</em></h2>
+    <p class="fade-in" style="font-size:16px; line-height:1.9; color:rgba(255,255,255,0.7); max-width:760px;"><%= content.dlaczego_warto %></p>
+  </div>
+</section>
+<% } %>
 
 <!-- REALIZACJE -->
 <% if (realizacje && realizacje.length > 0) { %>
@@ -160,6 +182,21 @@
 </section>
 <% } %>
 -->
+
+<!-- OBSZAR DZIAŁANIA -->
+<% if (content.obszar_dzialania) { %>
+<section style="background:var(--gray-light); padding:48px 60px;">
+  <div class="section-inner" style="max-width:900px; display:flex; align-items:flex-start; gap:32px;">
+    <div style="flex-shrink:0; width:48px; height:48px; background:var(--red); display:flex; align-items:center; justify-content:center; margin-top:2px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <div>
+      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Obszar działania</div>
+      <p style="font-size:15px; line-height:1.7; color:var(--text); max-width:700px;"><%= content.obszar_dzialania %></p>
+    </div>
+  </div>
+</section>
+<% } %>
 
 <!-- FAQ -->
 <% if (content.faq && content.faq.length > 0) { %>
