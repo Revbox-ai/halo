@@ -74,7 +74,7 @@ function initDb() {
       ['site_name', 'Halo'],
       ['tagline', 'Pomagamy firmom z Tarnobrzega zdobywać klientów'],
       ['phone', '+48 500 000 000'],
-      ['email', 'kontakt@halo.tarnobrzeg.pl'],
+      ['email', 'kontakt@agencjahalo.pl'],
       ['address', 'Tarnobrzeg, woj. podkarpackie'],
       ['ga4_id', ''],
       ['og_image', '/images/header.png'],
