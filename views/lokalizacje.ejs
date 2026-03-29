@@ -1,0 +1,89 @@
+<%- include('partials/head', { title, settings }) %>
+<% const currentPage = ''; %>
+<%- include('partials/nav') %>
+
+<!-- HERO -->
+<section style="background:var(--black); padding:140px 60px 80px;">
+  <div class="section-inner" style="max-width:900px;">
+    <div style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:16px; display:flex; align-items:center; gap:12px;">
+      <span style="width:32px; height:2px; background:var(--red); display:block;"></span>
+      Zasięg działania
+    </div>
+    <h1 style="font-family:var(--font-display); font-size:clamp(48px,6vw,88px); color:white; line-height:0.95; margin-bottom:24px;">
+      Obsługiwane <em style="color:var(--red); font-style:normal;">lokalizacje</em>
+    </h1>
+    <p style="font-size:17px; line-height:1.7; color:rgba(255,255,255,0.6); max-width:600px;">
+      Świadczę usługi marketingu cyfrowego dla firm z Tarnobrzega, Stalowej Woli, Sandomierza, Mielca, Rzeszowa i Nowej Dęby.
+    </p>
+  </div>
+</section>
+
+<!-- TARNOBRZEG — GŁÓWNE MIASTO -->
+<section style="background:white; padding:80px 60px;">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:60px; align-items:start;">
+      <div>
+        <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:12px;">Siedziba</div>
+        <h2 style="font-family:var(--font-display); font-size:52px; color:var(--black); line-height:0.9; margin-bottom:20px;">Tarnobrzeg</h2>
+        <p style="font-size:15px; color:var(--gray); line-height:1.6; margin-bottom:24px;">Główne miasto działalności. Wszystkie usługi dostępne w pełnym zakresie.</p>
+        <a href="/tarnobrzeg" style="display:inline-block; padding:14px 28px; background:var(--red); color:white; font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Zobacz usługi →</a>
+      </div>
+      <div>
+        <h3 style="font-size:14px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:20px;">Dostępne usługi w Tarnobrzegu</h3>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px;">
+          <% const tbUslugi = [
+            {slug:'tarnobrzeg/strony-internetowe', name:'Strony internetowe'},
+            {slug:'tarnobrzeg/seo', name:'SEO — pozycjonowanie'},
+            {slug:'tarnobrzeg/google-ads', name:'Google Ads'},
+            {slug:'tarnobrzeg/grafika-reklamowa', name:'Grafika i branding'},
+            {slug:'tarnobrzeg/automatyzacje', name:'Automatyzacje firmowe'},
+            {slug:'tarnobrzeg/marketing-internetowy', name:'Marketing internetowy'},
+            {slug:'tarnobrzeg/social-media', name:'Social media'},
+            {slug:'tarnobrzeg/content-marketing', name:'Content marketing'},
+            {slug:'tarnobrzeg/analityka-doradztwo', name:'Analityka i doradztwo'},
+            {slug:'tarnobrzeg/sklep-internetowy', name:'Sklep internetowy'},
+          ]; %>
+          <% for (const u of tbUslugi) { %>
+            <a href="/<%= u.slug %>" style="font-size:14px; color:var(--text); text-decoration:none; padding:10px 14px; background:var(--gray-light); transition:all .2s; display:flex; align-items:center; gap:8px;" onmouseover="this.style.background='var(--red)';this.style.color='white'" onmouseout="this.style.background='var(--gray-light)';this.style.color='var(--text)'">
+              <span style="width:6px; height:6px; background:var(--red); display:block; flex-shrink:0; border-radius:50%;"></span>
+              <%= u.name %>
+            </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POZOSTAŁE MIASTA -->
+<section style="background:var(--gray-light); padding:80px 60px;">
+  <div class="section-inner">
+    <div class="section-label fade-in">Region</div>
+    <h2 class="section-title fade-in" style="margin-bottom:48px;">Inne obsługiwane <em>lokalizacje</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:3px;">
+      <%
+        const otherCities = [
+          { slug:'stalowa-wola', name:'Stalowa Wola', desc:'Usługi marketingowe dla firm ze Stalowej Woli i okolic.' },
+          { slug:'sandomierz', name:'Sandomierz', desc:'Marketing i reklama dla firm z Sandomierza.' },
+          { slug:'mielec', name:'Mielec', desc:'Kompleksowy marketing dla firm z Mielca i strefy ekonomicznej.' },
+          { slug:'rzeszow', name:'Rzeszów', desc:'Usługi digital marketingu dla firm z Rzeszowa i Podkarpacia.' },
+          { slug:'nowa-deba', name:'Nowa Dęba', desc:'Marketing cyfrowy dla lokalnych firm z Nowej Dęby.' },
+        ];
+      %>
+      <% for (const city of otherCities) { %>
+        <div class="fade-in" style="background:white; padding:36px 32px; border-top:3px solid transparent; transition:border-color .2s;" onmouseover="this.style.borderColor='var(--red)'" onmouseout="this.style.borderColor='transparent'">
+          <h3 style="font-size:22px; font-weight:700; color:var(--black); margin-bottom:10px;"><%= city.name %></h3>
+          <p style="font-size:14px; color:var(--gray); line-height:1.6; margin-bottom:20px;"><%= city.desc %></p>
+          <a href="/kontakt" style="font-size:13px; color:var(--red); font-weight:700; text-decoration:none;">Zapytaj o ofertę →</a>
+        </div>
+      <% } %>
+    </div>
+    <p style="font-size:13px; color:var(--gray); margin-top:32px; text-align:center;">* Dla pozostałych miast przygotowuję ofertę indywidualnie. Skontaktuj się, aby omówić szczegóły.</p>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script src="/js/extra.js"></script>
+</body>
+</html>

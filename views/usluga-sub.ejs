@@ -1,0 +1,157 @@
+<%- include('partials/head', { title, settings, metaDescription: page.meta_description }) %>
+<% const currentPage = 'uslugi'; %>
+<%- include('partials/nav') %>
+
+<!-- BREADCRUMB + HERO -->
+<section style="background:var(--black); padding:140px 60px 80px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
+  <div style="position:absolute; width:500px; height:500px; background:radial-gradient(circle, rgba(230,51,41,0.1) 0%, transparent 70%); top:-80px; right:80px; pointer-events:none;"></div>
+  <div class="section-inner" style="position:relative; z-index:1; max-width:900px;">
+
+    <!-- Breadcrumb -->
+    <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-bottom:24px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+      <a href="/" style="color:rgba(255,255,255,0.35); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Start</a>
+      <span>›</span>
+      <a href="/<%= miasto %>" style="color:rgba(255,255,255,0.35); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'"><%= miasto.charAt(0).toUpperCase() + miasto.slice(1).replace(/-/g,' ') %></a>
+      <span>›</span>
+      <% if (parentPage) { %>
+        <a href="/<%= miasto %>/<%= usluga %>" style="color:rgba(255,255,255,0.35); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'"><%= parentPage.title.split(' — ')[0].split(' Tarnobrzeg')[0] %></a>
+        <span>›</span>
+      <% } %>
+      <span style="color:rgba(255,255,255,0.6);"><%= page.title.split(' Tarnobrzeg')[0].split(' — ')[0] %></span>
+    </div>
+
+    <div style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:16px; display:flex; align-items:center; gap:12px;">
+      <span style="width:32px; height:2px; background:var(--red); display:block;"></span>
+      <%= usluga.replace(/-/g,' ').replace(/\b\w/g, c => c.toUpperCase()) %>
+    </div>
+    <h1 style="font-family:var(--font-display); font-size:clamp(36px,5vw,72px); color:white; line-height:0.95; margin-bottom:24px;">
+      <%= page.h1 || page.title %>
+    </h1>
+    <p style="font-size:17px; line-height:1.7; color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:40px;">
+      <%= page.hero_subtitle %>
+    </p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <a href="#kontakt" class="btn-primary">Umów konsultację</a>
+      <% if (parentPage) { %>
+        <a href="/<%= miasto %>/<%= usluga %>" class="btn-secondary">← Wróć do <%= parentPage.title.split(' — ')[0].split(' Tarnobrzeg')[0] %></a>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- OPIS + KORZYŚCI -->
+<section style="background:white; padding:100px 60px;">
+  <div class="section-inner">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px;">
+
+      <!-- Opis i zakres -->
+      <div class="fade-in">
+        <div class="section-label">O usłudze</div>
+        <h2 class="section-title" style="margin-bottom:24px;">Na czym <em>polega</em><br>ta usługa?</h2>
+        <% if (content.opis) { %>
+          <p style="font-size:16px; line-height:1.8; color:#444; margin-bottom:28px;"><%= content.opis %></p>
+        <% } %>
+        <a href="#kontakt" style="display:inline-flex; align-items:center; gap:8px; color:var(--red); font-weight:700; font-size:14px; text-decoration:none; letter-spacing:0.5px;">
+          Zapytaj o szczegóły →
+        </a>
+      </div>
+
+      <!-- Korzyści -->
+      <div class="fade-in">
+        <div class="section-label">Efekty</div>
+        <h2 class="section-title" style="margin-bottom:36px;">Korzyści<br><em>dla firmy</em></h2>
+        <% if (content.korzysci && content.korzysci.length > 0) { %>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <% for (let i = 0; i < content.korzysci.length; i++) { %>
+              <div style="display:flex; align-items:flex-start; gap:16px; background:var(--gray-light); padding:18px 22px;">
+                <span style="font-family:var(--font-display); font-size:24px; color:var(--red); line-height:1; flex-shrink:0;">0<%= i+1 %></span>
+                <span style="font-size:15px; color:var(--text); line-height:1.5; margin-top:2px;"><%= content.korzysci[i] %></span>
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<% if (content.faq && content.faq.length > 0) { %>
+<section style="background:var(--gray-light); padding:80px 60px;">
+  <div class="section-inner" style="max-width:800px;">
+    <div class="section-label fade-in">FAQ</div>
+    <h2 class="section-title fade-in" style="margin-bottom:48px;">Często zadawane<br><em>pytania</em></h2>
+    <% for (const f of content.faq) { %>
+      <div class="faq-item fade-in" onclick="this.classList.toggle('open')">
+        <div class="faq-question">
+          <span><%= f.pytanie %></span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer"><%= f.odpowiedz %></div>
+      </div>
+    <% } %>
+  </div>
+</section>
+<% } %>
+
+<!-- POWIĄZANE PODSTRONY -->
+<% if (siblings && siblings.length > 0) { %>
+<section style="background:white; padding:80px 60px;">
+  <div class="section-inner">
+    <h2 style="font-family:var(--font-display); font-size:32px; color:var(--black); margin-bottom:28px;">Inne elementy <em style="color:var(--red); font-style:normal;">tej usługi</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px;">
+      <% for (const s of siblings) { %>
+        <% const shortT = s.title.split(' Tarnobrzeg')[0].split(' — ')[0]; %>
+        <a href="/<%= s.slug %>" style="text-decoration:none; background:var(--gray-light); padding:16px 20px; border-left:3px solid transparent; display:flex; align-items:center; justify-content:space-between; gap:8px; transition:all .2s; font-size:14px; color:var(--text); font-weight:500;" onmouseover="this.style.borderColor='var(--red)';this.style.background='#f0f0f0'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--gray-light)'">
+          <%= shortT %> <span style="color:var(--red);">→</span>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- KONTAKT -->
+<section style="background:var(--red); padding:100px 60px;" id="kontakt">
+  <div class="section-inner" style="max-width:700px; text-align:center;">
+    <div class="section-label-white fade-in" style="justify-content:center; color:rgba(255,255,255,0.7);">Gotowy?</div>
+    <h2 class="section-title fade-in" style="color:white; margin-bottom:16px; text-align:center;">Zacznijmy<br><em style="color:rgba(255,255,255,0.7); font-style:normal;">współpracę</em></h2>
+    <p style="font-size:16px; color:rgba(255,255,255,0.8); margin-bottom:48px; text-align:center;" class="fade-in">
+      Bezpłatna konsultacja — opowiedz mi o swoich potrzebach.
+    </p>
+    <div id="contact-success" style="display:none; background:rgba(255,255,255,0.15); border-left:4px solid white; padding:20px 24px; margin-bottom:24px; text-align:left; color:white;">
+      <strong>Dziękujemy!</strong> Odezwiemy się w ciągu 24 godzin.
+    </div>
+    <form action="/kontakt" method="POST" style="text-align:left;" class="fade-in">
+      <input type="hidden" name="service" value="<%= page.slug %>">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+        <div>
+          <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:8px;">Imię *</label>
+          <input type="text" name="name" required style="width:100%; padding:14px 18px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.1); color:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='white'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
+        </div>
+        <div>
+          <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:8px;">Telefon</label>
+          <input type="tel" name="phone" style="width:100%; padding:14px 18px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.1); color:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='white'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
+        </div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:8px;">E-mail *</label>
+        <input type="email" name="email" required style="width:100%; padding:14px 18px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.1); color:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='white'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:8px;">Wiadomość</label>
+        <textarea name="message" rows="4" style="width:100%; padding:14px 18px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.1); color:white; font-size:15px; font-family:var(--font-body); outline:none; transition:border-color .2s; resize:vertical;" onfocus="this.style.borderColor='white'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'"></textarea>
+      </div>
+      <button type="submit" style="width:100%; padding:18px; background:white; color:var(--red); font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; border:none; cursor:pointer; font-family:var(--font-body); transition:opacity .2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        Wyślij zapytanie →
+      </button>
+    </form>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script src="/js/extra.js"></script>
+</body>
+</html>

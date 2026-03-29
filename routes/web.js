@@ -88,6 +88,18 @@ router.get('/mapa-strony', (req, res) => {
   res.render('mapa-strony', { title: 'Mapa strony — Halo', settings });
 });
 
+// ─── LOKALIZACJE ─────────────────────────────────────────
+router.get('/lokalizacje', (req, res) => {
+  const db = getDb();
+  const settings = getSettings();
+  const page = db.prepare('SELECT * FROM pages WHERE slug = ?').get('lokalizacje');
+  db.close();
+  if (!page) return res.render('lokalizacje', { title: 'Obsługiwane lokalizacje — Halo', settings });
+  let content = {};
+  try { content = JSON.parse(page.content_json || '{}'); } catch(e) {}
+  res.render('lokalizacje', { title: page.title, settings, page, content });
+});
+
 // ─── USŁUGI (service pages) ──────────────────────────────
 router.get('/uslugi/:slug', (req, res, next) => {
   const db = getDb();
@@ -120,6 +132,34 @@ router.get('/uslugi/:slug', (req, res, next) => {
   });
 });
 
+// ─── PODSTRONY POZIOMU 3 /miasto/usluga/podstrona ────────
+router.get('/:miasto/:usluga/:podstrona', (req, res, next) => {
+  const db = getDb();
+  const settings = getSettings();
+  const slug = `${req.params.miasto}/${req.params.usluga}/${req.params.podstrona}`;
+  const page = db.prepare('SELECT * FROM pages WHERE slug = ?').get(slug);
+  if (!page) { db.close(); return next(); }
+
+  let content = {};
+  try { content = JSON.parse(page.content_json || '{}'); } catch(e) {}
+
+  // Get parent category page for breadcrumb / related links
+  const parentSlug = `${req.params.miasto}/${req.params.usluga}`;
+  const parentPage = db.prepare('SELECT * FROM pages WHERE slug = ?').get(parentSlug);
+
+  // Get sibling subpages (same parent category)
+  const siblings = db.prepare("SELECT slug, title FROM pages WHERE slug LIKE ? AND slug != ? ORDER BY slug").all(`${parentSlug}/%`, slug);
+
+  db.close();
+  res.render('usluga-sub', {
+    title: page.title + ' — Halo',
+    settings, page, content, parentPage, siblings,
+    miasto: req.params.miasto,
+    usluga: req.params.usluga,
+    podstrona: req.params.podstrona
+  });
+});
+
 // ─── STRONY LOKALIZACYJNE /miasto/usluga ─────────────────
 router.get('/:miasto/:usluga', (req, res, next) => {
   const db = getDb();
@@ -146,6 +186,30 @@ router.get('/:miasto/:usluga', (req, res, next) => {
 // ─── CONTACT FORM (AJAX / from service pages) ───────────
 router.post('/kontakt-form', (req, res) => {
   res.json({ success: true, message: 'Dziękujemy! Odezwiemy się w ciągu 24 godzin.' });
+});
+
+// ─── STRONY MIAST /miasto ──────────────────────────────────
+const KNOWN_CITIES = ['tarnobrzeg', 'stalowa-wola', 'sandomierz', 'mielec', 'rzeszow', 'nowa-deba'];
+router.get('/:miasto', (req, res, next) => {
+  if (!KNOWN_CITIES.includes(req.params.miasto)) return next();
+  const db = getDb();
+  const settings = getSettings();
+  const page = db.prepare('SELECT * FROM pages WHERE slug = ?').get(req.params.miasto);
+  if (!page) { db.close(); return next(); }
+
+  let content = {};
+  try { content = JSON.parse(page.content_json || '{}'); } catch(e) {}
+
+  // Get all category pages for this city
+  const categoryPages = db.prepare("SELECT slug, title, h1, hero_subtitle FROM pages WHERE slug LIKE ? AND slug NOT LIKE ?")
+    .all(`${req.params.miasto}/%`, `${req.params.miasto}/%/%`);
+
+  db.close();
+  res.render('miasto', {
+    title: page.title,
+    settings, page, content, categoryPages,
+    miasto: req.params.miasto
+  });
 });
 
 module.exports = router;

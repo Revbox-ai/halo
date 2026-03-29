@@ -13,88 +13,261 @@
 </section>
 
 <section style="background:white; padding:80px 60px;">
-  <div class="section-inner" style="max-width:900px;">
+  <div class="section-inner" style="max-width:1000px;">
 
     <!-- STRONY GŁÓWNE -->
     <div style="margin-bottom:60px;">
       <h2 style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:24px; padding-bottom:12px; border-bottom:2px solid var(--red);">Strony główne</h2>
       <ul style="list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
-        <li><a href="/" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strona główna</a></li>
-        <li><a href="/o-mnie" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">O mnie</a></li>
-        <li><a href="/realizacje" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Realizacje</a></li>
-        <li><a href="/blog" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Blog</a></li>
-        <li><a href="/kontakt" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Kontakt</a></li>
+        <% [
+          ['/','Strona główna'],['/o-mnie','O mnie'],['/realizacje','Realizacje'],
+          ['/blog','Blog'],['/kontakt','Kontakt'],['/lokalizacje','Obsługiwane lokalizacje']
+        ].forEach(([href,label]) => { %>
+          <li><a href="<%= href %>" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+        <% }); %>
       </ul>
     </div>
 
-    <!-- USŁUGI TARNOBRZEG -->
+    <!-- TARNOBRZEG — USŁUGI GŁÓWNE -->
     <div style="margin-bottom:60px;">
-      <h2 style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:24px; padding-bottom:12px; border-bottom:2px solid var(--red);">Usługi — Tarnobrzeg</h2>
+      <h2 style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:24px; padding-bottom:12px; border-bottom:2px solid var(--red);">
+        <a href="/tarnobrzeg" style="color:var(--red); text-decoration:none;">Tarnobrzeg</a> — usługi główne
+      </h2>
       <ul style="list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
-        <li><a href="/uslugi/strony-internetowe-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strony internetowe</a></li>
-        <li><a href="/uslugi/seo-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">SEO — pozycjonowanie</a></li>
-        <li><a href="/uslugi/google-ads-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Google Ads</a></li>
-        <li><a href="/uslugi/marketing-internetowy-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Marketing internetowy</a></li>
-        <li><a href="/uslugi/social-media-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Social media</a></li>
-        <li><a href="/uslugi/content-marketing-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Content marketing</a></li>
-        <li><a href="/uslugi/grafika-reklamowa-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Branding i kreacja</a></li>
-        <li><a href="/uslugi/automatyzacje-firmy-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Automatyzacje i narzędzia</a></li>
-        <li><a href="/uslugi/analityka-doradztwo-tarnobrzeg" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Analityka i doradztwo</a></li>
+        <% [
+          ['/tarnobrzeg/strony-internetowe','Strony internetowe'],
+          ['/tarnobrzeg/seo','SEO — pozycjonowanie'],
+          ['/tarnobrzeg/google-ads','Google Ads'],
+          ['/tarnobrzeg/grafika-reklamowa','Grafika i branding'],
+          ['/tarnobrzeg/automatyzacje','Automatyzacje firmowe'],
+          ['/tarnobrzeg/marketing-internetowy','Marketing internetowy'],
+          ['/tarnobrzeg/social-media','Social media'],
+          ['/tarnobrzeg/content-marketing','Content marketing'],
+          ['/tarnobrzeg/analityka-doradztwo','Analityka i doradztwo'],
+          ['/tarnobrzeg/sklep-internetowy','Sklep internetowy'],
+        ].forEach(([href,label]) => { %>
+          <li><a href="<%= href %>" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+        <% }); %>
       </ul>
     </div>
 
-    <!-- USŁUGI LOKALNE -->
-    <div>
-      <h2 style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:32px; padding-bottom:12px; border-bottom:2px solid var(--red);">Usługi — region</h2>
+    <!-- TARNOBRZEG — PODSTRONY LEVEL 3 -->
+    <div style="margin-bottom:60px;">
+      <h2 style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:32px; padding-bottom:12px; border-bottom:2px solid var(--red);">Tarnobrzeg — podstrony szczegółowe</h2>
       <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:40px;">
 
         <div>
-          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Stalowa Wola</h3>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Strony internetowe</h3>
           <ul style="list-style:none;">
-            <li><a href="/stalowa-wola/strony-internetowe" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strony internetowe Stalowa Wola</a></li>
-            <li><a href="/stalowa-wola/seo" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">SEO Stalowa Wola</a></li>
-            <li><a href="/stalowa-wola/google-ads" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Google Ads Stalowa Wola</a></li>
-            <li><a href="/stalowa-wola/marketing-internetowy" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Marketing internetowy Stalowa Wola</a></li>
+            <% [
+              ['projekt-graficzny-strony','Projekt graficzny strony'],
+              ['responsywny-kod-mobile','Responsywna strona mobilna'],
+              ['seo-on-page','SEO on-page'],
+              ['schema-markup','Schema markup'],
+              ['core-web-vitals','Core Web Vitals'],
+              ['integracja-narzedzi-analitycznych','Integracja narzędzi analitycznych'],
+              ['panel-administracyjny','Panel administracyjny'],
+              ['ssl-hosting-kopie-zapasowe','SSL, hosting i kopie zapasowe'],
+              ['formularze-kontaktowe','Formularze kontaktowe'],
+              ['automatyzacja-follow-up-po-formularzu','Automatyzacja follow-up'],
+              ['optymalizacja-pod-generative-search','Optymalizacja pod Generative Search'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/strony-internetowe/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
           </ul>
         </div>
 
         <div>
-          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Sandomierz</h3>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">SEO</h3>
           <ul style="list-style:none;">
-            <li><a href="/sandomierz/strony-internetowe" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strony internetowe Sandomierz</a></li>
-            <li><a href="/sandomierz/seo" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">SEO Sandomierz</a></li>
-            <li><a href="/sandomierz/google-ads" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Google Ads Sandomierz</a></li>
+            <% [
+              ['audyt-seo','Audyt SEO'],
+              ['analiza-konkurencji-lokalnej','Analiza konkurencji lokalnej'],
+              ['google-business-profile','Google Business Profile'],
+              ['lokalne-slowa-kluczowe','Lokalne słowa kluczowe'],
+              ['optymalizacja-techniczna-strony','Optymalizacja techniczna'],
+              ['tworzenie-tresci-seo','Tworzenie treści SEO'],
+              ['landing-page-lokalne','Landing page lokalne'],
+              ['link-building-lokalny','Link building lokalny'],
+              ['zarzadzanie-opiniami-google','Zarządzanie opiniami Google'],
+              ['raport-seo-miesieczny','Raport SEO miesięczny'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/seo/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
           </ul>
         </div>
 
         <div>
-          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Mielec</h3>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Google Ads</h3>
           <ul style="list-style:none;">
-            <li><a href="/mielec/strony-internetowe" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strony internetowe Mielec</a></li>
-            <li><a href="/mielec/seo" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">SEO Mielec</a></li>
-            <li><a href="/mielec/google-ads" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Google Ads Mielec</a></li>
-            <li><a href="/mielec/marketing-internetowy" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Marketing internetowy Mielec</a></li>
+            <% [
+              ['audyt-konta-google-ads','Audyt konta Google Ads'],
+              ['konfiguracja-nowego-konta-google-ads','Konfiguracja konta'],
+              ['badanie-slow-kluczowych','Badanie słów kluczowych'],
+              ['kreacje-reklamowe-google-ads','Kreacje reklamowe'],
+              ['targetowanie-lokalne-google-ads','Targetowanie lokalne'],
+              ['sledzenie-konwersji-google-ads','Śledzenie konwersji'],
+              ['optymalizacja-kampanii-google-ads','Optymalizacja kampanii'],
+              ['remarketing-google-ads','Remarketing'],
+              ['raport-google-ads-roas','Raport i ROAS'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/google-ads/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
           </ul>
         </div>
 
         <div>
-          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Rzeszów</h3>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Grafika i branding</h3>
           <ul style="list-style:none;">
-            <li><a href="/rzeszow/strony-internetowe" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strony internetowe Rzeszów</a></li>
-            <li><a href="/rzeszow/seo" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">SEO Rzeszów</a></li>
-            <li><a href="/rzeszow/google-ads" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Google Ads Rzeszów</a></li>
-            <li><a href="/rzeszow/marketing-internetowy" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Marketing internetowy Rzeszów</a></li>
+            <% [
+              ['logo-i-identyfikacja-wizualna','Logo i identyfikacja wizualna'],
+              ['bannery-google-display','Bannery Google Display'],
+              ['grafiki-facebook-instagram','Grafiki Facebook i Instagram'],
+              ['szablony-postow-i-stories','Szablony postów i stories'],
+              ['ulotki-plakaty-rollupy','Ulotki, plakaty i roll-upy'],
+              ['wizytowki-i-materialy-biurowe','Wizytówki i materiały biurowe'],
+              ['prezentacje-firmowe','Prezentacje firmowe'],
+              ['grafiki-na-strone-internetowa','Grafiki na stronę'],
+              ['brandbook','Brandbook'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/grafika-reklamowa/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
           </ul>
         </div>
 
         <div>
-          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Nowa Dęba</h3>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Automatyzacje</h3>
           <ul style="list-style:none;">
-            <li><a href="/nowa-deba/strony-internetowe" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:7px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'">Strony internetowe Nowa Dęba</a></li>
+            <% [
+              ['audyt-procesow','Audyt procesów'],
+              ['make-zapier','Make i Zapier'],
+              ['chatboty-ai','Chatboty AI'],
+              ['follow-up-email-sms','Follow-up email i SMS'],
+              ['integracje-crm','Integracje CRM'],
+              ['automatyzacja-fakturowania','Automatyzacja fakturowania'],
+              ['powiadomienia-i-alerty','Powiadomienia i alerty'],
+              ['szkolenie-z-obslugi-systemow','Szkolenie z obsługi systemów'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/automatyzacje/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Marketing internetowy</h3>
+          <ul style="list-style:none;">
+            <% [
+              ['facebook-instagram-ads','Facebook i Instagram Ads'],
+              ['tiktok-ads','TikTok Ads'],
+              ['linkedin-ads','LinkedIn Ads'],
+              ['planowanie-kampanii','Planowanie kampanii'],
+              ['dobor-kanalow-marketingowych','Dobór kanałów'],
+              ['kreacje-reklamowe','Kreacje reklamowe'],
+              ['pixele-konwersje-sledzenie','Piksele i konwersje'],
+              ['analiza-i-raport-miesieczny','Analiza miesięczna'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/marketing-internetowy/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Social media</h3>
+          <ul style="list-style:none;">
+            <% [
+              ['prowadzenie-profili-firmowych','Prowadzenie profili'],
+              ['posty-grafiki-rolki-stories','Posty, rolki i stories'],
+              ['kalendarz-tresci','Kalendarz treści'],
+              ['obsluga-komentarzy-i-wiadomosci','Obsługa komentarzy'],
+              ['zasiegi-organiczne','Zasięgi organiczne'],
+              ['kampanie-reklamowe-social-media','Kampanie reklamowe'],
+              ['raport-social-media','Raport social media'],
+              ['komunikacja-dopasowana-do-platformy','Komunikacja per platforma'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/social-media/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Content marketing</h3>
+          <ul style="list-style:none;">
+            <% [
+              ['strategia-contentowa','Strategia contentowa'],
+              ['teksty-na-strony-uslugowe','Teksty na strony usługowe'],
+              ['artykuly-blogowe-seo','Artykuły blogowe SEO'],
+              ['opisy-produktow-i-kategorii','Opisy produktów'],
+              ['newslettery-i-sekwencje-email','Newslettery i email'],
+              ['ebooki-checklisty-przewodniki','E-booki i checklisty'],
+              ['copywriting-storytelling','Copywriting i storytelling'],
+              ['optymalizacja-tresci-pod-seo','Optymalizacja treści'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/content-marketing/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Analityka i doradztwo</h3>
+          <ul style="list-style:none;">
+            <% [
+              ['konfiguracja-ga4-gtm','Konfiguracja GA4 i GTM'],
+              ['sledzenie-konwersji','Śledzenie konwersji'],
+              ['audyt-dzialan-marketingowych','Audyt działań'],
+              ['raporty-z-rekomendacjami','Raporty z rekomendacjami'],
+              ['testy-ab','Testy A/B'],
+              ['analiza-lejka-sprzedazowego','Analiza lejka'],
+              ['doradztwo-strategiczne','Doradztwo strategiczne'],
+              ['konsultacje-godzinowe','Konsultacje godzinowe'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/analityka-doradztwo/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-bottom:12px;">Sklep internetowy</h3>
+          <ul style="list-style:none;">
+            <% [
+              ['wdrozenie-woocommerce-prestashop','Wdrożenie WooCommerce / PrestaShop'],
+              ['projekt-graficzny-sklepu','Projekt graficzny sklepu'],
+              ['optymalizacja-konwersji-cro','Optymalizacja konwersji CRO'],
+              ['integracja-systemow-platnosci','Integracja płatności'],
+              ['feed-produktowy-google-merchant','Feed Google Merchant'],
+              ['seo-sklepu-internetowego','SEO sklepu'],
+              ['reklamy-google-shopping','Google Shopping'],
+              ['audyt-optymalizacja-sklepu','Audyt sklepu'],
+            ].forEach(([sub,label]) => { %>
+              <li><a href="/tarnobrzeg/sklep-internetowy/<%= sub %>" style="font-size:13px; color:var(--text); text-decoration:none; display:block; padding:6px 0; border-bottom:1px solid #f5f5f5; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+            <% }); %>
           </ul>
         </div>
 
       </div>
+    </div>
+
+    <!-- INNE LOKALIZACJE -->
+    <div>
+      <h2 style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--red); margin-bottom:24px; padding-bottom:12px; border-bottom:2px solid var(--red);">Inne obsługiwane lokalizacje</h2>
+      <ul style="list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+        <% [
+          ['/stalowa-wola/strony-internetowe','Strony internetowe Stalowa Wola'],
+          ['/stalowa-wola/seo','SEO Stalowa Wola'],
+          ['/stalowa-wola/google-ads','Google Ads Stalowa Wola'],
+          ['/sandomierz/strony-internetowe','Strony internetowe Sandomierz'],
+          ['/sandomierz/seo','SEO Sandomierz'],
+          ['/sandomierz/google-ads','Google Ads Sandomierz'],
+          ['/mielec/strony-internetowe','Strony internetowe Mielec'],
+          ['/mielec/seo','SEO Mielec'],
+          ['/mielec/google-ads','Google Ads Mielec'],
+          ['/rzeszow/strony-internetowe','Strony internetowe Rzeszów'],
+          ['/rzeszow/seo','SEO Rzeszów'],
+          ['/rzeszow/google-ads','Google Ads Rzeszów'],
+          ['/nowa-deba/strony-internetowe','Strony internetowe Nowa Dęba'],
+        ].forEach(([href,label]) => { %>
+          <li><a href="<%= href %>" style="font-size:14px; color:var(--text); text-decoration:none; display:block; padding:8px 0; border-bottom:1px solid #f0f0f0; transition:color .2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text)'"><%= label %></a></li>
+        <% }); %>
+      </ul>
     </div>
 
   </div>

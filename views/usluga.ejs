@@ -134,7 +134,7 @@
   </div>
 </section>
 
-<!-- CENNIK -->
+<!-- CENNIK (tymczasowo ukryty — wycena indywidualna)
 <% if (content.cennik && content.cennik.length > 0) { %>
 <section style="background:var(--black); padding:100px 60px;">
   <div class="section-inner">
@@ -159,6 +159,7 @@
   </div>
 </section>
 <% } %>
+-->
 
 <!-- FAQ -->
 <% if (content.faq && content.faq.length > 0) { %>
@@ -224,9 +225,10 @@
     <h2 style="font-family:var(--font-display); font-size:32px; color:var(--black); margin-bottom:28px;">Powiązane <em style="color:var(--red); font-style:normal;">usługi</em></h2>
     <div style="display:grid; grid-template-columns:repeat(<%= relatedPages.length %>,1fr); gap:16px;">
       <% for (const rp of relatedPages) { %>
+        <% const shortTitle = rp.title.includes(' — ') ? rp.title.split(' — ')[0] : rp.title; %>
         <a href="/uslugi/<%= rp.slug %>" style="text-decoration:none; background:white; padding:24px 28px; border-left:3px solid var(--red); display:flex; align-items:center; justify-content:space-between; gap:12px; transition:background .2s;" onmouseover="this.style.background='var(--red)'; this.querySelector('span').style.color='white'; this.querySelector('strong').style.color='white'" onmouseout="this.style.background='white'; this.querySelector('span').style.color='var(--text)'; this.querySelector('strong').style.color='var(--text)'">
           <div>
-            <strong style="font-size:15px; font-weight:700; color:var(--text); display:block; line-height:1.2; transition:color .2s;"><%= rp.title %></strong>
+            <strong style="font-size:15px; font-weight:700; color:var(--text); display:block; line-height:1.2; transition:color .2s;"><%= shortTitle %></strong>
           </div>
           <span style="color:var(--text); transition:color .2s; font-size:18px; flex-shrink:0;">→</span>
         </a>

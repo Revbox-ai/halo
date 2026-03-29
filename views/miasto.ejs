@@ -1,0 +1,76 @@
+<%- include('partials/head', { title, settings, metaDescription: page.meta_description }) %>
+<% const currentPage = ''; %>
+<%- include('partials/nav') %>
+
+<!-- HERO -->
+<section style="background:var(--black); padding:140px 60px 80px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image: linear-gradient(rgba(230,51,41,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(230,51,41,0.04) 1px, transparent 1px); background-size:60px 60px;"></div>
+  <div style="position:absolute; width:600px; height:600px; background:radial-gradient(circle, rgba(230,51,41,0.12) 0%, transparent 70%); top:-100px; right:100px; pointer-events:none;"></div>
+  <div class="section-inner" style="position:relative; z-index:1; max-width:900px;">
+    <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-bottom:24px;">
+      <a href="/" style="color:rgba(255,255,255,0.35); text-decoration:none;" onmouseover="this.style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Start</a>
+      <span style="margin:0 8px;">›</span>
+      <span style="color:rgba(255,255,255,0.6);"><%= page.title.split(' —')[0] %></span>
+    </div>
+    <div style="font-size:11px; letter-spacing:4px; text-transform:uppercase; color:var(--red); margin-bottom:16px; display:flex; align-items:center; gap:12px;">
+      <span style="width:32px; height:2px; background:var(--red); display:block;"></span>
+      Usługi marketingowe
+    </div>
+    <h1 style="font-family:var(--font-display); font-size:clamp(48px,6vw,88px); color:white; line-height:0.95; margin-bottom:24px;">
+      <%= page.h1 || page.title %>
+    </h1>
+    <p style="font-size:17px; line-height:1.7; color:rgba(255,255,255,0.6); max-width:600px; margin-bottom:40px;">
+      <%= page.hero_subtitle %>
+    </p>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <a href="/kontakt" class="btn-primary">Bezpłatna konsultacja</a>
+      <a href="#uslugi" class="btn-secondary">Zobacz usługi</a>
+    </div>
+  </div>
+</section>
+
+<!-- OPIS -->
+<% if (content.opis) { %>
+<section style="background:#111; padding:60px; border-bottom:1px solid rgba(255,255,255,0.06);">
+  <div class="section-inner" style="max-width:900px;">
+    <p style="font-size:17px; line-height:1.8; color:rgba(255,255,255,0.7); max-width:720px;"><%= content.opis %></p>
+  </div>
+</section>
+<% } %>
+
+<!-- USŁUGI GRID -->
+<section style="background:white; padding:100px 60px;" id="uslugi">
+  <div class="section-inner">
+    <div class="section-label fade-in">Oferta</div>
+    <h2 class="section-title fade-in" style="margin-bottom:60px;">Usługi <em>dla firm</em><br>z <%= page.title.split(' —')[0].replace('Marketing cyfrowy w ', '').replace('Marketing cyfrowy w ', '') %></h2>
+    <% if (categoryPages && categoryPages.length > 0) { %>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:3px;">
+        <% for (const cat of categoryPages) { %>
+          <% const shortName = cat.title.split(' — ')[0].split(' Tarnobrzeg')[0].split(' w Tarnobrzegu')[0]; %>
+          <a href="/<%= cat.slug %>" style="text-decoration:none; background:var(--gray-light); padding:36px 32px; border-top:3px solid transparent; transition:all .2s; display:block;" class="fade-in" onmouseover="this.style.borderColor='var(--red)';this.style.background='white'" onmouseout="this.style.borderColor='transparent';this.style.background='var(--gray-light)'">
+            <h3 style="font-size:18px; font-weight:700; color:var(--black); margin-bottom:10px; line-height:1.2;"><%= shortName %></h3>
+            <p style="font-size:14px; color:var(--gray); line-height:1.5; margin-bottom:16px;"><%= cat.hero_subtitle ? cat.hero_subtitle.substring(0, 90) + '...' : '' %></p>
+            <span style="font-size:13px; color:var(--red); font-weight:700;">Dowiedz się więcej →</span>
+          </a>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--red); padding:80px 60px;">
+  <div class="section-inner" style="text-align:center; max-width:700px;">
+    <h2 style="font-family:var(--font-display); font-size:clamp(40px,5vw,72px); color:white; line-height:0.95; margin-bottom:20px;">
+      Porozmawiajmy<br><em style="color:rgba(255,255,255,0.7); font-style:normal;">o Twoim projekcie</em>
+    </h2>
+    <p style="font-size:16px; color:rgba(255,255,255,0.8); margin-bottom:36px;">Bezpłatna konsultacja — bez zobowiązań.</p>
+    <a href="/kontakt" style="display:inline-block; padding:18px 48px; background:white; color:var(--red); font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Skontaktuj się →</a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+<script src="/js/extra.js"></script>
+</body>
+</html>
