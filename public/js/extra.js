@@ -20,10 +20,24 @@ if (hamburger && navLinks) {
     });
   });
 
+  // Flyout sub-menu toggle na mobile
+  navLinks.querySelectorAll('.nav-sub-parent > a').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const parent = toggle.closest('.nav-sub-parent');
+        const isOpen = parent.classList.contains('open');
+        navLinks.querySelectorAll('.nav-sub-parent').forEach(p => p.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      }
+    });
+  });
+
   // Zamknij dropdown po kliknięciu poza nim
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.nav-dropdown')) {
       navLinks.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+      navLinks.querySelectorAll('.nav-sub-parent').forEach(p => p.classList.remove('open'));
     }
   });
 }

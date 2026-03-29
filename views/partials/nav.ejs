@@ -5,153 +5,151 @@
 
   <ul class="nav-links" id="nav-links">
     <li><a href="/" class="<%= typeof currentPage !== 'undefined' && currentPage === 'home' ? 'active' : '' %>">Start</a></li>
-    <li class="nav-dropdown nav-mega-parent">
+    <li class="nav-dropdown">
       <a href="#" class="nav-dropdown-toggle">Usługi <span class="nav-arrow">▾</span></a>
-      <div class="nav-mega-menu">
-        <div class="nav-mega-inner">
+      <ul class="nav-dropdown-menu">
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/strony-internetowe" class="nav-mega-heading">Strony internetowe</a>
-            <ul>
-              <li><a href="/tarnobrzeg/strony-internetowe/projekt-graficzny-strony">Projekt graficzny</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/responsywny-kod-mobile">Responsywność mobile</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/seo-on-page">SEO on-page</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/panel-administracyjny">Panel administracyjny</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/ssl-hosting-kopie-zapasowe">SSL i hosting</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/core-web-vitals">Core Web Vitals</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/formularze-kontaktowe">Formularze kontaktowe</a></li>
-              <li><a href="/tarnobrzeg/strony-internetowe/schema-markup">Schema markup</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/strony-internetowe">Strony internetowe <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/strony-internetowe/projekt-graficzny-strony">Projekt graficzny</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/responsywny-kod-mobile">Responsywność mobile</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/seo-on-page">SEO on-page</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/panel-administracyjny">Panel administracyjny</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/ssl-hosting-kopie-zapasowe">SSL i hosting</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/core-web-vitals">Core Web Vitals</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/formularze-kontaktowe">Formularze kontaktowe</a></li>
+            <li><a href="/tarnobrzeg/strony-internetowe/schema-markup">Schema markup</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/seo" class="nav-mega-heading">SEO</a>
-            <ul>
-              <li><a href="/tarnobrzeg/seo/audyt-seo">Audyt SEO</a></li>
-              <li><a href="/tarnobrzeg/seo/google-business-profile">Google Business Profile</a></li>
-              <li><a href="/tarnobrzeg/seo/lokalne-slowa-kluczowe">Słowa kluczowe</a></li>
-              <li><a href="/tarnobrzeg/seo/optymalizacja-techniczna-strony">Optymalizacja techniczna</a></li>
-              <li><a href="/tarnobrzeg/seo/tworzenie-tresci-seo">Treści SEO</a></li>
-              <li><a href="/tarnobrzeg/seo/link-building-lokalny">Link building</a></li>
-              <li><a href="/tarnobrzeg/seo/zarzadzanie-opiniami-google">Opinie Google</a></li>
-              <li><a href="/tarnobrzeg/seo/raport-seo-miesieczny">Raport miesięczny</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/seo">SEO — pozycjonowanie <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/seo/audyt-seo">Audyt SEO</a></li>
+            <li><a href="/tarnobrzeg/seo/google-business-profile">Google Business Profile</a></li>
+            <li><a href="/tarnobrzeg/seo/lokalne-slowa-kluczowe">Słowa kluczowe</a></li>
+            <li><a href="/tarnobrzeg/seo/optymalizacja-techniczna-strony">Optymalizacja techniczna</a></li>
+            <li><a href="/tarnobrzeg/seo/tworzenie-tresci-seo">Treści SEO</a></li>
+            <li><a href="/tarnobrzeg/seo/link-building-lokalny">Link building</a></li>
+            <li><a href="/tarnobrzeg/seo/zarzadzanie-opiniami-google">Opinie Google</a></li>
+            <li><a href="/tarnobrzeg/seo/raport-seo-miesieczny">Raport miesięczny</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/google-ads" class="nav-mega-heading">Google Ads</a>
-            <ul>
-              <li><a href="/tarnobrzeg/google-ads/audyt-konta-google-ads">Audyt konta</a></li>
-              <li><a href="/tarnobrzeg/google-ads/konfiguracja-nowego-konta-google-ads">Konfiguracja konta</a></li>
-              <li><a href="/tarnobrzeg/google-ads/badanie-slow-kluczowych">Słowa kluczowe</a></li>
-              <li><a href="/tarnobrzeg/google-ads/targetowanie-lokalne-google-ads">Targetowanie lokalne</a></li>
-              <li><a href="/tarnobrzeg/google-ads/sledzenie-konwersji-google-ads">Śledzenie konwersji</a></li>
-              <li><a href="/tarnobrzeg/google-ads/remarketing-google-ads">Remarketing</a></li>
-              <li><a href="/tarnobrzeg/google-ads/optymalizacja-kampanii-google-ads">Optymalizacja kampanii</a></li>
-              <li><a href="/tarnobrzeg/google-ads/raport-google-ads-roas">Raport ROAS</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/google-ads">Google Ads <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/google-ads/audyt-konta-google-ads">Audyt konta</a></li>
+            <li><a href="/tarnobrzeg/google-ads/konfiguracja-nowego-konta-google-ads">Konfiguracja konta</a></li>
+            <li><a href="/tarnobrzeg/google-ads/badanie-slow-kluczowych">Słowa kluczowe</a></li>
+            <li><a href="/tarnobrzeg/google-ads/targetowanie-lokalne-google-ads">Targetowanie lokalne</a></li>
+            <li><a href="/tarnobrzeg/google-ads/sledzenie-konwersji-google-ads">Śledzenie konwersji</a></li>
+            <li><a href="/tarnobrzeg/google-ads/remarketing-google-ads">Remarketing</a></li>
+            <li><a href="/tarnobrzeg/google-ads/optymalizacja-kampanii-google-ads">Optymalizacja kampanii</a></li>
+            <li><a href="/tarnobrzeg/google-ads/raport-google-ads-roas">Raport ROAS</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/marketing-internetowy" class="nav-mega-heading">Marketing internetowy</a>
-            <ul>
-              <li><a href="/tarnobrzeg/marketing-internetowy/facebook-instagram-ads">Facebook & Instagram Ads</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/tiktok-ads">TikTok Ads</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/linkedin-ads">LinkedIn Ads</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/planowanie-kampanii">Planowanie kampanii</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/kreacje-reklamowe">Kreacje reklamowe</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/pixele-konwersje-sledzenie">Piksele i konwersje</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/dobor-kanalow-marketingowych">Dobór kanałów</a></li>
-              <li><a href="/tarnobrzeg/marketing-internetowy/analiza-i-raport-miesieczny">Raport miesięczny</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/marketing-internetowy">Marketing internetowy <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/marketing-internetowy/facebook-instagram-ads">Facebook & Instagram Ads</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/tiktok-ads">TikTok Ads</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/linkedin-ads">LinkedIn Ads</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/planowanie-kampanii">Planowanie kampanii</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/kreacje-reklamowe">Kreacje reklamowe</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/pixele-konwersje-sledzenie">Piksele i konwersje</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/dobor-kanalow-marketingowych">Dobór kanałów</a></li>
+            <li><a href="/tarnobrzeg/marketing-internetowy/analiza-i-raport-miesieczny">Raport miesięczny</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/social-media" class="nav-mega-heading">Social media</a>
-            <ul>
-              <li><a href="/tarnobrzeg/social-media/prowadzenie-profili-firmowych">Prowadzenie profili</a></li>
-              <li><a href="/tarnobrzeg/social-media/posty-grafiki-rolki-stories">Posty i rolki</a></li>
-              <li><a href="/tarnobrzeg/social-media/kalendarz-tresci">Kalendarz treści</a></li>
-              <li><a href="/tarnobrzeg/social-media/obsluga-komentarzy-i-wiadomosci">Moderacja</a></li>
-              <li><a href="/tarnobrzeg/social-media/zasiegi-organiczne">Zasięgi organiczne</a></li>
-              <li><a href="/tarnobrzeg/social-media/kampanie-reklamowe-social-media">Kampanie reklamowe</a></li>
-              <li><a href="/tarnobrzeg/social-media/komunikacja-dopasowana-do-platformy">Strategia per platforma</a></li>
-              <li><a href="/tarnobrzeg/social-media/raport-social-media">Raport miesięczny</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/social-media">Social media <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/social-media/prowadzenie-profili-firmowych">Prowadzenie profili</a></li>
+            <li><a href="/tarnobrzeg/social-media/posty-grafiki-rolki-stories">Posty i rolki</a></li>
+            <li><a href="/tarnobrzeg/social-media/kalendarz-tresci">Kalendarz treści</a></li>
+            <li><a href="/tarnobrzeg/social-media/obsluga-komentarzy-i-wiadomosci">Moderacja</a></li>
+            <li><a href="/tarnobrzeg/social-media/zasiegi-organiczne">Zasięgi organiczne</a></li>
+            <li><a href="/tarnobrzeg/social-media/kampanie-reklamowe-social-media">Kampanie reklamowe</a></li>
+            <li><a href="/tarnobrzeg/social-media/komunikacja-dopasowana-do-platformy">Strategia per platforma</a></li>
+            <li><a href="/tarnobrzeg/social-media/raport-social-media">Raport miesięczny</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/grafika-reklamowa" class="nav-mega-heading">Grafika i branding</a>
-            <ul>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/logo-i-identyfikacja-wizualna">Logo i identyfikacja</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/bannery-google-display">Bannery Google Display</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/grafiki-facebook-instagram">Grafiki social media</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/szablony-postow-i-stories">Szablony stories</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/ulotki-plakaty-rollupy">Ulotki i plakaty</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/wizytowki-i-materialy-biurowe">Wizytówki</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/prezentacje-firmowe">Prezentacje firmowe</a></li>
-              <li><a href="/tarnobrzeg/grafika-reklamowa/brandbook">Brandbook</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/grafika-reklamowa">Branding i kreacja <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/grafika-reklamowa/logo-i-identyfikacja-wizualna">Logo i identyfikacja</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/bannery-google-display">Bannery Google Display</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/grafiki-facebook-instagram">Grafiki social media</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/szablony-postow-i-stories">Szablony stories</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/ulotki-plakaty-rollupy">Ulotki i plakaty</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/wizytowki-i-materialy-biurowe">Wizytówki</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/prezentacje-firmowe">Prezentacje firmowe</a></li>
+            <li><a href="/tarnobrzeg/grafika-reklamowa/brandbook">Brandbook</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/content-marketing" class="nav-mega-heading">Content marketing</a>
-            <ul>
-              <li><a href="/tarnobrzeg/content-marketing/strategia-contentowa">Strategia contentowa</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/teksty-na-strony-uslugowe">Teksty usługowe SEO</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/artykuly-blogowe-seo">Artykuły blogowe</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/opisy-produktow-i-kategorii">Opisy produktów</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/newslettery-i-sekwencje-email">Newslettery i email</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/ebooki-checklisty-przewodniki">E-booki i checklisty</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/copywriting-storytelling">Copywriting</a></li>
-              <li><a href="/tarnobrzeg/content-marketing/optymalizacja-tresci-pod-seo">Optymalizacja treści</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/content-marketing">Content marketing <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/content-marketing/strategia-contentowa">Strategia contentowa</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/teksty-na-strony-uslugowe">Teksty usługowe SEO</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/artykuly-blogowe-seo">Artykuły blogowe</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/opisy-produktow-i-kategorii">Opisy produktów</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/newslettery-i-sekwencje-email">Newslettery i email</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/ebooki-checklisty-przewodniki">E-booki i checklisty</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/copywriting-storytelling">Copywriting</a></li>
+            <li><a href="/tarnobrzeg/content-marketing/optymalizacja-tresci-pod-seo">Optymalizacja treści</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/automatyzacje" class="nav-mega-heading">Automatyzacje</a>
-            <ul>
-              <li><a href="/tarnobrzeg/automatyzacje/audyt-procesow">Audyt procesów</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/make-zapier">Make i Zapier</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/chatboty-ai">Chatboty AI</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/follow-up-email-sms">Follow-up email/SMS</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/integracje-crm">Integracje CRM</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/automatyzacja-fakturowania">Fakturowanie</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/powiadomienia-i-alerty">Powiadomienia i alerty</a></li>
-              <li><a href="/tarnobrzeg/automatyzacje/szkolenie-z-obslugi-systemow">Szkolenie z obsługi</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/automatyzacje">Automatyzacje i narzędzia <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/automatyzacje/audyt-procesow">Audyt procesów</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/make-zapier">Make i Zapier</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/chatboty-ai">Chatboty AI</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/follow-up-email-sms">Follow-up email/SMS</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/integracje-crm">Integracje CRM</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/automatyzacja-fakturowania">Fakturowanie</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/powiadomienia-i-alerty">Powiadomienia i alerty</a></li>
+            <li><a href="/tarnobrzeg/automatyzacje/szkolenie-z-obslugi-systemow">Szkolenie z obsługi</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/analityka-doradztwo" class="nav-mega-heading">Analityka i doradztwo</a>
-            <ul>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/konfiguracja-ga4-gtm">GA4 i GTM</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/sledzenie-konwersji">Śledzenie konwersji</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/audyt-dzialan-marketingowych">Audyt marketingowy</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/raporty-z-rekomendacjami">Raporty</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/testy-ab">Testy A/B</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/analiza-lejka-sprzedazowego">Lejek sprzedażowy</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/doradztwo-strategiczne">Doradztwo strategiczne</a></li>
-              <li><a href="/tarnobrzeg/analityka-doradztwo/konsultacje-godzinowe">Konsultacje</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/analityka-doradztwo">Analityka i doradztwo <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/analityka-doradztwo/konfiguracja-ga4-gtm">GA4 i GTM</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/sledzenie-konwersji">Śledzenie konwersji</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/audyt-dzialan-marketingowych">Audyt marketingowy</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/raporty-z-rekomendacjami">Raporty</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/testy-ab">Testy A/B</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/analiza-lejka-sprzedazowego">Lejek sprzedażowy</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/doradztwo-strategiczne">Doradztwo strategiczne</a></li>
+            <li><a href="/tarnobrzeg/analityka-doradztwo/konsultacje-godzinowe">Konsultacje</a></li>
+          </ul>
+        </li>
 
-          <div class="nav-mega-col">
-            <a href="/tarnobrzeg/sklep-internetowy" class="nav-mega-heading">Sklep internetowy</a>
-            <ul>
-              <li><a href="/tarnobrzeg/sklep-internetowy/wdrozenie-woocommerce-prestashop">WooCommerce/PrestaShop</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/projekt-graficzny-sklepu">Projekt graficzny</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/optymalizacja-konwersji-cro">Optymalizacja CRO</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/integracja-systemow-platnosci">Systemy płatności</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/feed-produktowy-google-merchant">Google Merchant</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/seo-sklepu-internetowego">SEO sklepu</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/reklamy-google-shopping">Google Shopping</a></li>
-              <li><a href="/tarnobrzeg/sklep-internetowy/audyt-optymalizacja-sklepu">Audyt sklepu</a></li>
-            </ul>
-          </div>
+        <li class="nav-sub-parent">
+          <a href="/tarnobrzeg/sklep-internetowy">Sklep internetowy <span class="nav-sub-arrow">›</span></a>
+          <ul class="nav-sub-menu">
+            <li><a href="/tarnobrzeg/sklep-internetowy/wdrozenie-woocommerce-prestashop">WooCommerce/PrestaShop</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/projekt-graficzny-sklepu">Projekt graficzny</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/optymalizacja-konwersji-cro">Optymalizacja CRO</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/integracja-systemow-platnosci">Systemy płatności</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/feed-produktowy-google-merchant">Google Merchant</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/seo-sklepu-internetowego">SEO sklepu</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/reklamy-google-shopping">Google Shopping</a></li>
+            <li><a href="/tarnobrzeg/sklep-internetowy/audyt-optymalizacja-sklepu">Audyt sklepu</a></li>
+          </ul>
+        </li>
 
-        </div>
-      </div>
+      </ul>
     </li>
     <li><a href="/o-mnie" class="<%= typeof currentPage !== 'undefined' && currentPage === 'o-mnie' ? 'active' : '' %>">O mnie</a></li>
     <li><a href="/realizacje" class="<%= typeof currentPage !== 'undefined' && currentPage === 'realizacje' ? 'active' : '' %>">Realizacje</a></li>
